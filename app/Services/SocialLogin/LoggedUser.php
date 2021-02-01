@@ -3,6 +3,7 @@
 namespace App\Services\SocialLogin;
 
 use App\Data\Repositories\Subscriptions;
+use Illuminate\Support\Str;
 use PhpSpec\Exception\Fracture\MethodNotFoundException;
 
 class LoggedUser
@@ -27,7 +28,7 @@ class LoggedUser
      */
     protected function get($key)
     {
-        $key = snake_case($key);
+        $key = Str::snake($key);
 
         $value = $this->loadSessionVar();
 
@@ -43,7 +44,7 @@ class LoggedUser
 
     protected function set($key, $data)
     {
-        $key = snake_case($key);
+        $key = Str::snake($key);
 
         $loggedUser = $this->loadSessionVar();
 
@@ -55,7 +56,7 @@ class LoggedUser
             return $this;
         }
 
-        $loggedUser[snake_case($key)] = $data;
+        $loggedUser[Str::snake($key)] = $data;
 
         $this->updateSession($loggedUser);
 

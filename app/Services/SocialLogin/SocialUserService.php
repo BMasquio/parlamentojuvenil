@@ -13,6 +13,7 @@ use App\Repositories\UsersRepository;
 use App\Data\Repositories\Subscriptions;
 use App\Repositories\SocialUserRepository;
 use Laravel\Socialite\Two\User as SocialiteUser;
+use Illuminate\Support\Str;
 
 class SocialUserService
 {
@@ -117,7 +118,7 @@ class SocialUserService
             is_null(
                 $socialNetwork = SocialNetwork::where(
                     'slug',
-                    snake_case($slug)
+                    Str::snake($slug)
                 )->first()
             )
         ) {

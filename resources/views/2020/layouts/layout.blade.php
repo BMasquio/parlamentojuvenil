@@ -44,7 +44,7 @@
         <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
 
 
-        <link href="{{elixir('css/app.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
 
         <!-- ************* FINAL ATUALIZAÇÃO 2020 ************* -->
 

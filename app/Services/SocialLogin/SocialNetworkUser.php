@@ -3,6 +3,7 @@
 namespace App\Services\SocialLogin;
 
 use App\Models\SocialNetwork;
+use Illuminate\Support\Str;
 
 class SocialNetworkUser
 {
@@ -55,7 +56,7 @@ class SocialNetworkUser
     {
         $this->user = $socialNetworkUser;
 
-        $this->social_network_slug = snake_case($socialNetwork->slug);
+        $this->social_network_slug = Str::snake($socialNetwork->slug);
 
         $this->social_network_name = $socialNetwork->name;
 

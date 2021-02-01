@@ -95,9 +95,9 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $view->with('isAdmin', false);
 
-            $view->with('loggedUser', loggedUser());
+            $view->with('loggedUser', loggedUser() ?? null);
 
-            $view->with('loggedUserJson', loggedUser()->toJson());
+            $view->with('loggedUserJson', loggedUser()->toJson() ?? null);
         });
 
         //		/**

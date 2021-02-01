@@ -51,10 +51,10 @@ return [
         ],
     ],
 
-    //    'instagram' => [
-    //        'token' => env('PJ_INSTAGRAM_TOKEN', ''),
-    //        'username' => env('PJ_INSTAGRAM_USERNAME', 'parlamentojuvenilrj'),
-    //    ],
+    'instagram' => [
+        'username' => env('PJ_INSTAGRAM_USERNAME', 'parlamentojuvenilrj'),
+        'secret' => env('PJ_INSTAGRAM_SECRET', ''),
+    ],
 
     /*
     |--------------------------------------------------------------------------

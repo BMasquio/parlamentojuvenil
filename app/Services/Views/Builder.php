@@ -112,7 +112,6 @@ class Builder
 
         return $view
             ->with('banner_file', $banner)
-            ->with('spreadsheet', $this->spreadsheet)
             ->with('congressmen', $congressmenLinks)
             ->with('carrousel', $testimonials)
             ->with('cities', $cities)
@@ -237,8 +236,8 @@ class Builder
     public function getTestimonials()
     {
         $file = file(
-            public_path(
-                'files/apps/parlamentojuvenil/parlamentares/testemunhos-parlamentares-juvenis.txt'
+            storage_path(
+                'app/parlamentares/testemunhos-parlamentares-juvenis.txt'
             )
         );
 
@@ -321,7 +320,7 @@ class Builder
      */
     public function getArticlesForType($operand, $year, $type, $edition = null)
     {
-        $articles = Article::orderBy('published_at', 'descending')->where(
+        $articles = Article::orderBy('published_at', 'desc')->where(
             'type',
             $type
         );

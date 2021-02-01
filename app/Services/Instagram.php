@@ -5,6 +5,8 @@ namespace App\Services;
 use Cache;
 use Instagram\Api as InstagramApi;
 use Exception;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\CacheItem;
 
 class Instagram
 {
@@ -19,18 +21,23 @@ class Instagram
     public function getImagesUrl($count = 0)
     {
         try {
-            return Cache::remember('getImagesUrl', 15, function () use (
+            return Cache::remember('instagramImagesUrl', 1200, function () use (
                 $count
             ) {
-                $api = new InstagramApi();
+                $cachePool = new FilesystemAdapter('instagram-feed', 0);
 
-                $api->setUserName(config('app.instagram.username'));
+                $api = new InstagramApi($cachePool);
 
-                $feed = $api->getFeed();
+                $api->login(
+                    config('app.instagram.username'),
+                    config('app.instagram.secret')
+                );
 
-                return collect($feed->medias)
+                $profile = $api->getProfile(config('app.instagram.username'));
+
+                return collect($profile->getMedias())
                     ->map(function ($item) {
-                        return $item->displaySrc;
+                        return $item->getDisplaySrc();
                     })
                     ->slice(0, $count);
             });

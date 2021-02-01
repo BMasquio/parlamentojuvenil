@@ -123,8 +123,8 @@ class Pages extends BaseController
     protected function getTestimonials()
     {
         $file = file(
-            public_path(
-                'files/apps/parlamentojuvenil/parlamentares/testemunhos-parlamentares-juvenis.txt'
+            storage_path(
+                'app/parlamentares/testemunhos-parlamentares-juvenis.txt'
             )
         );
 
