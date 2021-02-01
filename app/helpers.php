@@ -181,7 +181,7 @@ function fix_cities()
 
 function random_color($scope = 'default', array $except = [])
 {
-    return \App\Data\Models\Color::random($scope, $except)['name'];
+    return \App\Models\Color::random($scope, $except)['name'];
 }
 
 function logout()

@@ -6,9 +6,9 @@ use DB;
 use Mail;
 use Carbon\Carbon;
 use Rhumsaa\Uuid\Uuid;
-use App\Data\Models\Flag;
-use App\Data\Models\FlagVote;
-use App\Data\Models\FlagContest as FlagContestModel;
+use App\Models\Flag;
+use App\Models\FlagVote;
+use App\Models\FlagContest as FlagContestModel;
 
 class FlagContest extends Repository
 {

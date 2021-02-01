@@ -3,13 +3,13 @@
 namespace App\Data\Repositories;
 
 use DB;
-use App\Data\Models\User;
-use App\Data\Models\Vote;
-use App\Data\Models\Student;
-use App\Data\Models\FlagVote;
-use App\Data\Models\SocialUser;
-use App\Data\Models\FlagContest;
-use App\Data\Models\Subscription;
+use App\Models\User;
+use App\Models\Vote;
+use App\Models\Student;
+use App\Models\FlagVote;
+use App\Models\SocialUser;
+use App\Models\FlagContest;
+use App\Models\Subscription;
 use App\Exceptions\StudentAlreadyVoted;
 
 class Subscriptions extends Repository

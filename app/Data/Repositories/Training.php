@@ -3,9 +3,9 @@
 namespace App\Data\Repositories;
 
 use Session;
-use App\Data\Models\Watched;
+use App\Models\Watched;
 use Illuminate\Database\Eloquent\Collection;
-use App\Data\Models\Training as TrainingModel;
+use App\Models\Training as TrainingModel;
 
 class Training extends Repository
 {

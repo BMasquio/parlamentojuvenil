@@ -2,8 +2,8 @@
 
 namespace App\Data\Repositories;
 
-use App\Data\Models\User;
-use App\Data\Models\SocialUser;
+use App\Models\User;
+use App\Models\SocialUser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Exceptions\Authentication as AuthenticationException;

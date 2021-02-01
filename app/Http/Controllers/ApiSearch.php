@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Data\Models\User;
+use App\Models\User;
 use App\Data\Repositories\FlagContest;
 use DB;
-use App\Data\Models\Seeduc;
+use App\Models\Seeduc;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as BaseController;
 

@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Data\Models\Seeduc;
-use App\Data\Models\SocialUser;
-use App\Data\Models\Student;
-use App\Data\Models\Subscription;
+use App\Models\Seeduc;
+use App\Models\SocialUser;
+use App\Models\Student;
+use App\Models\Subscription;
 use App\Http\Controllers\Subscriptions;
 use League\Csv\Statement;
 use Illuminate\Console\Command;

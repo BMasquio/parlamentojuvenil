@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use DB;
-use App\Data\Models\City;
-use App\Data\Models\State;
+use App\Models\City;
+use App\Models\State;
 use Illuminate\Console\Command;
 
 class PopulateCities extends Command

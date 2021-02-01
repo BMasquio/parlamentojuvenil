@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Data\Models\Subscription;
+use App\Models\Subscription;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 

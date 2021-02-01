@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Data\Models;
+namespace App\Models;
 
-use App\Data\Models\Subscription;
+use App\Models\Subscription;
 use Carbon\Carbon;
 use App\Base\Model;
 

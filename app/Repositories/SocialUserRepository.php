@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Data\Models\User;
-use App\Data\Models\SocialUser;
+use App\Models\User;
+use App\Models\SocialUser;
 use Illuminate\Support\Facades\Hash;
 
 class SocialUserRepository

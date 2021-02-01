@@ -3,9 +3,9 @@
 namespace App\Data\Repositories;
 
 use DB;
-use App\Data\Models\City;
-use App\Data\Models\School;
-use App\Data\Models\Student;
+use App\Models\City;
+use App\Models\School;
+use App\Models\Student;
 
 class Cities
 {

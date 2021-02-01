@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Models;
+namespace App\Models;
 
 use App\Base\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,7 +24,7 @@ class SocialNetwork extends Model
     public function users()
     {
         return $this->belongsToMany(
-            'App\Data\Models\User',
+            'App\Models\User',
             'social_users',
             'social_network_id'
         )->withPivot('social_network_user_id', 'data');
@@ -32,6 +32,6 @@ class SocialNetwork extends Model
 
     public function socialUsers()
     {
-        return $this->hasMany('App\Data\Models\SocialUser');
+        return $this->hasMany('App\Models\SocialUser');
     }
 }

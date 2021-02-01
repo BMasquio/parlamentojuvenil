@@ -8,7 +8,7 @@
 
 namespace App\Repositories;
 
-use App\Data\Models\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Ramsey\Uuid\Uuid;

@@ -2,13 +2,13 @@
 
 namespace App\Data\Repositories;
 
-use App\Data\Models\School;
-use App\Data\Models\Clipping;
-use App\Data\Models\Student;
-use App\Data\Models\Timeline;
+use App\Models\School;
+use App\Models\Clipping;
+use App\Models\Student;
+use App\Models\Timeline;
 use App\Services\Views\Builder;
 use Jenssegers\Date\Date as Carbon;
-use App\Data\Models\Subscription;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Mail;
 use App\Exceptions\AlreadySubscribed;
 use App\Services\News\Service as SyncNewsService;

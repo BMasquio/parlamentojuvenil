@@ -2,14 +2,14 @@
 
 namespace App\Services\Views;
 
-use App\Data\Models\Student;
+use App\Models\Student;
 use \DB;
 use Cache;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use App\Data\Models\State;
-use App\Data\Models\School;
-use App\Data\Models\Article;
+use App\Models\State;
+use App\Models\School;
+use App\Models\Article;
 use App\Data\Repositories\Data;
 use Illuminate\Support\Facades\Session;
 use App\Data\Repositories\Subscriptions;

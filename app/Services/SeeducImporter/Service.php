@@ -6,9 +6,9 @@ use DB;
 use Carbon\Carbon;
 use League\Csv\Reader;
 use Illuminate\Support\Str;
-use App\Data\Models\Seeduc as Model;
-use App\Data\Models\School as SchoolModel;
-use App\Data\Models\City as CityModel;
+use App\Models\Seeduc as Model;
+use App\Models\School as SchoolModel;
+use App\Models\City as CityModel;
 
 class Service
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Models;
+namespace App\Models;
 
 use App\Base\Model;
 
@@ -18,17 +18,17 @@ class SocialUser extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Data\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function socialNetwork()
     {
-        return $this->belongsTo('App\Data\Models\SocialNetwork');
+        return $this->belongsTo('App\Models\SocialNetwork');
     }
 
     public function student()
     {
-        return $this->belongsTo('App\Data\Models\Student');
+        return $this->belongsTo('App\Models\Student');
     }
 
     public function getProfileUrlAttribute()

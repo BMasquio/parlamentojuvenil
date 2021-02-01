@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Data\Models\Watched;
+use App\Models\Watched;
 use Illuminate\Database\Eloquent\Collection;
 
 class Quiz extends Training

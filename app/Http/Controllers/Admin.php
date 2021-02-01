@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use \DB;
-use App\Data\Models\School;
-use App\Data\Models\Student;
+use App\Models\School;
+use App\Models\Student;
 use App\Data\Repositories\Data;
-use App\Data\Models\Subscription;
+use App\Models\Subscription;
 use App\Data\Repositories\Subscriptions;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Controllers\Controller as BaseController;

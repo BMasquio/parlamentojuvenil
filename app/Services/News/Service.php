@@ -5,7 +5,7 @@ namespace App\Services\News;
 use DB;
 use Carbon\Carbon;
 use App\Base\Sync;
-use App\Data\Models\Article;
+use App\Models\Article;
 use Illuminate\Database\Eloquent\Collection;
 
 class Service extends Sync

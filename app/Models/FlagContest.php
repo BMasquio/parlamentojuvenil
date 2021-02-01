@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Models;
+namespace App\Models;
 
 use App\Base\Model;
 
@@ -14,6 +14,6 @@ class FlagContest extends Model
 
     public function student()
     {
-        return $this->belongsTo('App\Data\Models\Student');
+        return $this->belongsTo('App\Models\Student');
     }
 }

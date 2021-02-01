@@ -2,7 +2,7 @@
 
 namespace App\Services\SocialLogin;
 
-use App\Data\Models\SocialNetwork;
+use App\Models\SocialNetwork;
 
 class SocialNetworkUser
 {

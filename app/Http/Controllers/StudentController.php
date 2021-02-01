@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Data\Models\Seeduc;
-use App\Data\Models\Student;
+use App\Models\Seeduc;
+use App\Models\Student;
 use App\Data\Repositories\Data;
 use App\Http\Requests\LoginSeeducUser;
 use Illuminate\Support\Facades\Input;

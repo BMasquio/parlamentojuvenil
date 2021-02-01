@@ -8,7 +8,7 @@ use Event;
 use Input;
 use Storage;
 use Session;
-use App\Data\Models\Training as TrainingModel;
+use App\Models\Training as TrainingModel;
 use App\Http\Controllers\Controller as BaseController;
 use App\Data\Repositories\Training as TrainingRepository;
 

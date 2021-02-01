@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Base\Constants;
-use App\Data\Models\Role;
-use App\Data\Models\User;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class PjListAdmin extends Command

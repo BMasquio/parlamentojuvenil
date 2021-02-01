@@ -4,10 +4,10 @@ namespace App\Services\SocialLogin;
 
 use Auth;
 use Laravel\Socialite\Facades\Socialite;
-use App\Data\Models\User;
+use App\Models\User;
 use League\Flysystem\Exception;
-use App\Data\Models\SocialUser;
-use App\Data\Models\SocialNetwork;
+use App\Models\SocialUser;
+use App\Models\SocialNetwork;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\UsersRepository;
 use App\Data\Repositories\Subscriptions;

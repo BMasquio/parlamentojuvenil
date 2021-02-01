@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Data\Models;
+namespace App\Models;
 
 use App\Base\Model;
-use App\Data\Models\Scopes\ValidVote;
+use App\Models\Scopes\ValidVote;
 
 class Vote extends Model
 {

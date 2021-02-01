@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Models;
+namespace App\Models;
 
 use App\Base\Model;
 use App\Data\Scopes\Year as YearScope;
@@ -55,12 +55,12 @@ class Subscription extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Data\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function student()
     {
-        return $this->belongsTo('App\Data\Models\Student');
+        return $this->belongsTo('App\Models\Student');
     }
 
     public function getElected1NdAttribute()
