@@ -1,9 +1,12 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Data\Models\City;
 use App\Data\Models\School;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class SchoolsSeeder extends Seeder
 {

@@ -270,3 +270,17 @@ function legislative_process_enabled()
 {
     return true;
 }
+
+if (!function_exists('array_only')) {
+    /**
+     * Get a subset of the items from the given array.
+     *
+     * @param  array  $array
+     * @param  array|string  $keys
+     * @return array
+     */
+    function array_only($array, $keys)
+    {
+        return Arr::only($array, $keys);
+    }
+}

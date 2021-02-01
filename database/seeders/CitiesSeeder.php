@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Data\Models\City;
 use App\Data\Models\Country;
 use App\Data\Models\State;
