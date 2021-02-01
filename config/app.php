@@ -1,6 +1,61 @@
 <?php
 
 return [
+    'year' => env('APP_YEAR'),
+
+    'election' => [
+        'enabled' => env('ELECTION_ENABLED', false),
+        'start' => env('ELECTION_START'),
+        'end' => env('ELECTION_END'),
+        'round' => env('ELECTION_ROUND'),
+        'show-elected-1nd' => env('ELECTION_SHOW_ELECTED_1ND'),
+        'show-elected-2nd' => env('ELECTION_SHOW_ELECTED_2ND'),
+    ],
+
+    'subscriptions' => [
+        'enabled' => env('SUBSCRIPTIONS_ENABLED'),
+        'start' => env('SUBSCRIPTIONS_START'),
+        'end' => env('SUBSCRIPTIONS_END'),
+    ],
+
+    'student' => [
+        'birthdate' => [
+            'start' => env('STUDENT_BIRTHDATE_START'),
+            'end' => env('STUDENT_BIRTHDATE_END'),
+        ],
+    ],
+
+    'training' => [
+        'start' => env('TRAINING_START'),
+        'end' => env('TRAINING_END'),
+    ],
+
+    'billing' => [
+        'start' => env('BILLING_START'),
+        'end' => env('BILLING_END'),
+    ],
+
+    'flag' => [
+        'contest' => [
+            'show_rules' => env('FLAG_CONTEST_SHOW_RULES', false),
+
+            'subscriptions' => [
+                'start' => env('FLAG_CONTEST_SUBSCRIPTIONS_START'),
+                'end' => env('FLAG_CONTEST_SUBSCRIPTIONS_END'),
+            ],
+
+            'election' => [
+                'start' => env('FLAG_CONTEST_ELECTION_START'),
+                'end' => env('FLAG_CONTEST_ELECTION_END'),
+            ],
+        ],
+    ],
+
+    //    'instagram' => [
+    //        'token' => env('PJ_INSTAGRAM_TOKEN', ''),
+    //        'username' => env('PJ_INSTAGRAM_USERNAME', 'parlamentojuvenilrj'),
+    //    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -12,7 +67,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Parlamento Juvenil'),
 
     /*
     |--------------------------------------------------------------------------
@@ -66,7 +121,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Sao_Paulo',
 
     /*
     |--------------------------------------------------------------------------
@@ -79,7 +134,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt_BR',
 
     /*
     |--------------------------------------------------------------------------
