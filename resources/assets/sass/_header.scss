@@ -1,0 +1,78 @@
+
+.header-bg {
+  background: #ffc400 url("/templates/2020/assets/img/header-background.png") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+
+#mainNav {
+  border-bottom: 4px solid #000000;
+  border-top: 8px solid #000000;
+
+  .navbar-nav {
+    li.nav-item {
+      a.nav-link {
+        color: #000000;
+        font-family: 'balloonbold';
+        font-size: 1.5rem;
+
+        &:hover {
+          color: #443400;
+       }
+      }
+    }
+  }
+}
+
+.logo-alerj-topo {
+  background: #ffffff;
+  border: 6px solid #000000;
+  border-top:0px ;
+  padding: 0;
+  margin-top: -24px;
+
+  .logo-alerj {
+    padding: 5px 10px ;
+  }
+
+  .edicao2020 {
+    background: #000000;
+    color: #ffffff;
+    padding-top: 5px;
+    font-family: 'balloonbold';
+  }
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 766px) {
+  .header-bg {
+    background: #ffc400 none !important;
+  }
+}
+
+
+@media (max-width: 991.98px) {
+  .nav-item {
+    text-align: center;
+    border-bottom: solid 1px #000000;
+  }
+  .nav-item:first-child {
+    border-top: solid 1px #000000;
+  }
+}
+
+.navbar {
+
+  .bg-primary {
+    background-color: #000000 !important;
+
+    &:focus {
+      background-color: #000000 !important;
+    }
+
+
+  }
+}

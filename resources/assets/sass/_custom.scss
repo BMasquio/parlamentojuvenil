@@ -1,0 +1,400 @@
+body {
+  background: #ffc400 !important;
+  font-family: 'Kalam', cursive;
+  font-size: 1rem;
+}
+
+a {
+  color: #000000;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+h2 {
+  font-family: 'Bangers', cursive;
+}
+
+.masthead{
+  h2 {
+
+    font-family: 'Bangers', cursive;
+    font-size: 3em;
+
+    @media (max-width: 767.98px) {
+      font-size: 8vw;
+
+    }
+
+
+    /*font-family: 'Luckiest Guy';*/
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: 0 0.1em 10px black, 0.05em -0.03em 0 black, 0.05em 0.005em 0 black, 0em 0.08em 0 black, 0.05em 0.08em 0 black, 0px -0.03em 0 black, -0.03em -0.03em 0 black, -0.03em 0.08em 0 black, -0.03em 0 0 black;
+  }
+}
+
+
+.bg-secondary {
+  background: #ffc400 !important;
+}
+
+
+
+
+
+
+.banner-001 {
+  background: url("/templates/2020/assets/img/fundo_banner_001.jpg") !important;
+  background-position: center !important; /* Center the image */
+  background-repeat: no-repeat !important; /* Do not repeat the image */
+  background-size: cover !important; /* Resize the background image to cover the entire container */
+}
+
+
+
+
+
+.quempode {
+  background: #0388fe;
+}
+
+
+
+
+
+
+
+
+
+.container-fluid.instagram-images {
+  padding: 0px;
+
+  .col-md-3 {
+    padding: 0px;
+  }
+}
+
+
+
+
+
+
+.cronograma {
+
+  .timeline {
+
+    &:before {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      content: ' ';
+      display: block;
+      width: 6px;
+      height: 100%;
+      margin-left: -3px;
+      background: #d2d2d2;
+      background: -webkit-gradient(linear,left top,left bottom,from(rgba(210,210,210,0)),color-stop(8%,#000000),color-stop(92%,#000000),to(rgba(210,210,210,0)));
+      background: linear-gradient(to bottom,rgba(210,210,210,0) 0,#000000 8%,#000000 92%,rgba(210,210,210,0) 100%) !important;
+      z-index: 5;
+    }
+
+  }
+
+
+
+  .flag {
+    position: relative;
+    display: inline;
+    background: #000000 !important;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-align: left;
+    color: #ffffff !important;
+    font-family: 'balloonbold' !important;
+
+    &:before {
+      border: #000000;
+    }
+  }
+
+  .time {
+    background: none;
+    color: #000000;
+    font-family: 'balloonbold' !important;
+
+  }
+
+}
+
+
+
+
+
+
+.cronograma .timeline {
+  position: relative;
+  width: 660px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 1em 0;
+  list-style-type: none
+}
+
+@media (min-width:1200px) {
+  .cronograma .timeline {
+    width: 960px
+  }
+}
+
+
+.cronograma .timeline:before {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  content: ' ';
+  display: block;
+  width: 6px;
+  height: 100%;
+  margin-left: -3px;
+  background: #d2d2d2;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(210, 210, 210, 0)), color-stop(8%, #d2d2d2), color-stop(92%, #d2d2d2), to(rgba(210, 210, 210, 0)));
+  background: linear-gradient(to bottom, rgba(210, 210, 210, 0) 0, #d2d2d2 8%, #d2d2d2 92%, rgba(210, 210, 210, 0) 100%);
+  z-index: 5
+}
+
+.cronograma .timeline li {
+  padding: 1em 0
+}
+
+.cronograma .timeline li:after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden
+}
+
+.cronograma .direction-l {
+  position: relative;
+  width: 296px;
+  float: left;
+  text-align: right
+}
+
+@media (min-width:1200px) {
+  .cronograma .direction-l {
+    width: 446px
+  }
+}
+
+.cronograma .direction-r {
+  position: relative;
+  width: 296px;
+  float: right
+}
+
+@media (min-width:1200px) {
+  .cronograma .direction-r {
+    width: 446px
+  }
+}
+
+.cronograma .flag-wrapper {
+  position: relative;
+  display: inline-block;
+  text-align: center
+}
+
+.cronograma .flag-wrapper2 {
+  display: block;
+  padding: 10px;
+  position: relative;
+  color: #fff;
+  font-size: 15px;
+  background-color: #ff00ff !important;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .3)
+}
+
+.cronograma .flag-wrapper2:before {
+  content: '';
+  position: absolute;
+  border-top: 16px solid rgba(0, 0, 0, .15);
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent
+}
+
+
+
+.cronograma .direction-l .flag {
+  -webkit-box-shadow: -1px 1px 1px rgba(0, 0, 0, .15), 0 0 1px rgba(0, 0, 0, .15);
+  box-shadow: -1px 1px 1px rgba(0, 0, 0, .15), 0 0 1px rgba(0, 0, 0, .15)
+}
+
+.cronograma .direction-r .flag {
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, .15), 0 0 1px rgba(0, 0, 0, .15);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, .15), 0 0 1px rgba(0, 0, 0, .15)
+}
+
+.cronograma .direction-l .flag:before,
+.cronograma .direction-r .flag:before {
+  position: absolute;
+  top: 50%;
+  right: -40px;
+  content: ' ';
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin-top: -10px;
+  background: #fff;
+  border-radius: 10px;
+  border: 4px solid #000000 !important;
+  z-index: 10
+}
+
+
+.cronograma .direction-l .flag:after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  height: 0;
+  width: 0;
+  margin-top: -8px;
+  border: solid transparent;
+  border-left-color: #000000 !important;
+  border-width: 8px;
+  pointer-events: none
+}
+
+.cronograma .direction-r .flag:after {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  height: 0;
+  width: 0;
+  margin-top: -8px;
+  border: solid transparent;
+  border-right-color: #000000 !important;
+  border-width: 8px;
+  pointer-events: none
+}
+
+
+
+
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+
+.card-columns {
+  .card {
+    border: 6px solid #000000;
+    border-radius: 0;
+    margin-bottom:0;
+  }
+}
+
+
+@media (min-width: 576px) {
+  .card-columns {
+    column-count: 4;
+    column-gap: 0;
+    orphans: 1;
+    widows: 1;
+  }
+}
+
+
+h3 {
+  font-family: 'Bangers', cursive;
+  font-size: 4vw;
+  /* font-family: 'Luckiest Guy'; */
+  color: #fff;
+  text-shadow: 0 0.1em 10px rgba(0, 0, 0, 1), 0.05em -0.03em 0 rgba(0, 0, 0, 1),
+  0.05em 0.005em 0 rgba(0, 0, 0, 1), 0em 0.08em 0 rgba(0, 0, 0, 1),
+  0.05em 0.08em 0 rgba(0, 0, 0, 1), 0px -0.03em 0 rgba(0, 0, 0, 1),
+  -0.03em -0.03em 0 rgba(0, 0, 0, 1), -0.03em 0.08em 0 rgba(0, 0, 0, 1), -0.03em 0 0 rgba(0, 0, 0, 1);
+
+  /*padding-bottom: 100px;*/
+  @media (max-width: 767.98px) {
+    font-size: 7vw;
+  }
+}
+
+
+
+h4 {
+  font-family: 'Bangers', cursive;
+  font-size: 2em;
+  /* font-family: 'Luckiest Guy'; */
+  color: #fff;
+  text-shadow: 0 0.1em 10px rgba(0, 0, 0, 1), 0.05em -0.03em 0 rgba(0, 0, 0, 1),
+  0.05em 0.005em 0 rgba(0, 0, 0, 1), 0em 0.08em 0 rgba(0, 0, 0, 1),
+  0.05em 0.08em 0 rgba(0, 0, 0, 1), 0px -0.03em 0 rgba(0, 0, 0, 1),
+  -0.03em -0.03em 0 rgba(0, 0, 0, 1), -0.03em 0.08em 0 rgba(0, 0, 0, 1), -0.03em 0 0 rgba(0, 0, 0, 1);
+
+  /*padding-bottom: 100px;*/
+}
+
+
+
+
+.instagram {
+  a{
+    color: #ffffff;
+
+    &:hover {
+      color: #eee ;
+    }
+  }
+}
+
+
+
+
+
+
+
+.fontbigger {
+  font-size: 120%;
+  font-weight: 800;
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media  (max-width:991.98px) {
+
+  .masthead {
+    padding-top: 25vw !important;
+    padding-bottom: 0;
+  }
+  section#instagram {
+    padding-bottom: 6vw;
+  }
+
+
+}
+@media (min-width: 1024px) {
+
+  .home-layout {
+    .masthead {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  .masthead {
+    padding-top: calc(11vw + 7px);
+    padding-bottom: 0;
+  }
+}
+

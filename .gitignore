@@ -1,0 +1,13 @@
+/vendor
+/node_modules
+Homestead.yaml
+.env
+.idea/
+*~
+Thumbs.db
+public/files/apps/parlamentojuvenil/parlamentares/fotos/8a edicao (2014) - FULL/*
+public/files/apps/parlamentojuvenil/parlamentares/fotos/7a edicao (2013) - FULL/*
+public/files/apps/parlamentojuvenil/parlamentares/fotos/9a edicao (2015)/*
+public/files/apps/parlamentojuvenil/parlamentares/fotos/9a edicao (2015) - FULL/*
+Tideways.php
+.DS_Store

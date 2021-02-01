@@ -1,0 +1,29 @@
+.footer {
+  background-color: #000000;
+  color: #fff;
+
+  .btn-social {
+    line-height: 2.8rem;
+  }
+
+  a {
+    color: #ffffff;
+
+    &:hover {
+      color: #ffc400;
+    }
+  }
+
+
+  .btn-outline-light{
+
+    &:hover {
+      color: #212529;
+      background-color: #221a00;
+      border-color: #221a00;
+    }
+  }
+
+
+}
+

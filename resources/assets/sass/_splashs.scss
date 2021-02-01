@@ -1,0 +1,568 @@
+
+.splash-001 {
+  background: url("/templates/2020/images/fundo-splash-001.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover ;
+  font-family: 'balloonbold';
+  font-size: 30px;
+
+  h3{
+    font-family: 'antique_olivecompact';
+    color: #ffc400;
+    text-transform: uppercase;
+    text-shadow: 3px 0 0 #000, -3px 0 0 #000, 0 3px 0 #000, 0 -3px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+    font-size: 50px;
+  }
+}
+
+.splash-002 {
+  background: url("/templates/2020/images/fundo-splash-002.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover ;
+  font-family: 'balloonbold';
+  font-size: 30px;
+
+  h3 {
+    font-size: 30px;
+    text-transform: uppercase;
+    font-family: 'balloonbold';
+  }
+}
+
+.splash-003 {
+  background: url("/templates/2020/images/fundo-splash-003.png");
+  background-size: 100% auto;
+}
+
+
+
+
+@font-face {
+  font-family: 'SequentialistBB';
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/306FA6_1_0.woff2') format('woff2'),
+  url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/306FA6_0_0.woff') format('woff');
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'SequentialistBB';
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/306FA6_0_0.woff2') format('woff2'),
+  url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/306FA6_0_0.woff') format('woff');
+  font-style: italic;
+  font-weight: 400;
+}
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Kalam:300,400,700&display=swap');
+
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+.home-layout {
+  section {
+    /*min-height: 100vh;*/
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-bottom: #000000 solid 8px;
+    padding: 3rem;
+
+    @media (max-width: 767.98px) {
+      padding: 0;
+    }
+
+    &:nth-of-type(1){
+      background: #d52b21;
+      border-top: #000000 solid 8px;
+    }
+    &:nth-of-type(2) {
+      background: #0388fe;
+    }
+    &:nth-of-type(3) {
+      background: #90c320;
+    }
+    &:nth-of-type(4){
+      background: #e71873;
+    }
+    &:nth-of-type(5) {
+      background: #f39801;
+    }
+    &:nth-of-type(6) {
+      background: #f19808;
+    }
+
+
+  }
+}
+
+
+
+blockquote.bubble {
+  background-position: center;
+  background-repeat: no-repeat !important;
+  background-size: 100% 100%;
+  margin: 0 auto;
+  text-align: center;
+  height: 0;
+  box-sizing: content-box;
+  line-height: 1;
+}
+
+
+blockquote.speech {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/speech-bubble.svg);
+  width: 45%;
+  padding-top: 6%;
+  padding-bottom: 20%;
+}
+
+
+blockquote.whisper {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/whisper.svg);
+  width: 25%;
+  font-size: 2vw;
+  color: #ccc;
+  font-style: italic;
+  padding: 6% 5% 15%;
+}
+
+
+blockquote.electric {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/electric.svg);
+  width: 25%;
+  font-size: 2.4vw;
+  font-style: italic;
+  padding: 4% 6% 12% 0%;
+}
+
+
+blockquote.electric span {
+  display: block;
+  font-size: 3vw;
+  font-weight: bold;
+}
+
+
+
+
+.quempode {
+  blockquote.speech {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/speech-bubble.svg);
+    width: 80%;
+    padding-top: 6%;
+    padding-bottom: 20%;
+
+    @media (min-width: 1500px) {
+      padding-bottom: 40%;
+    }
+    @media (max-width: 1199.98px) {
+      padding-bottom: 30%;
+    }
+    @media (max-width: 767.98px) {
+      padding-bottom: 55%;
+    }
+
+    .inner{
+      padding: 0% 15% 0 15%;
+      font-size: 1.7vw;
+      background-size: cover;
+      font-family: 'balloonbold';
+
+      @media (max-width: 1199.98px) {
+        font-size: 2.7vw;
+        padding-top: 2%;
+      }
+      @media (max-width: 767.98px) {
+        padding: 2% 15% 0 15%;
+        font-size: 5vw;
+      }
+
+    }
+  }
+
+  blockquote.speech-reverse {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/speech-bubble.svg);
+    width: 80%;
+    padding-top: 6%;
+    padding-bottom: 20%;
+    transform: rotateY(180deg);
+
+    @media (min-width: 1500px) {
+      padding-bottom: 40%;
+    }
+
+    @media (max-width: 1199.98px) {
+      padding-bottom: 30%;
+    }
+    @media (max-width: 767.98px) {
+      padding-bottom: 55%;
+    }
+
+    .inner{
+      padding: 0% 15% 0 15%;
+      font-size: 1.7vw;
+      background-size: cover;
+      font-family: 'balloonbold';
+      transform: rotateY(180deg);
+
+      @media (max-width: 1199.98px) {
+        font-size: 2.7vw;
+        padding-top: 2%;
+      }
+      @media (max-width: 767.98px) {
+        padding: 2% 15% 0 15%;
+        font-size: 5vw;
+      }
+    }
+  }
+}
+
+
+
+
+
+.swipper {
+  blockquote.speech {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/speech-bubble.svg);
+    width: 95%;
+    padding-top: 6%;
+    padding-bottom: 93%;
+
+
+    @media (max-width: 767.98px) {
+      padding-top: 12%;
+      /*padding-bottom: 120%;*/
+      padding-bottom: 120%;
+    }
+
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      /*padding-bottom: 75%;*/
+      padding-bottom: 110%;
+    }
+
+    .inner{
+      padding: 10% 15% 0 15%;
+      font-size: 4vw;
+      /*background-size: cover;
+      font-family: 'balloonbold';*/
+
+      @media (max-width: 575.98px) {
+        padding: 3% 15% 0 15%;
+        font-size: 3.7vw;
+      }
+
+      @media (min-width: 768px) and (max-width: 991.98px) {
+        font-size: 3.2vw;
+      }
+
+      @media (min-width: 992px) {
+        font-size: 2vw;
+        padding: 5% 15% 0 15%;
+      }
+      @media (min-width: 1200px) {
+        padding: 10% 15% 0 15%;
+        font-size: 1.4vw;
+      }
+      @media (min-width: 1715px) and (max-width: 2193px) {
+        padding: 5% 15% 0;
+        font-size: 1.3vw;
+      }
+
+      @media (min-width: 2200px) {
+        font-size: 1vw;
+      }
+    }
+  }
+
+  blockquote.speech-reverse {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/speech-bubble.svg);
+    width: 95%;
+    padding-top: 6%;
+    padding-bottom: 75%;
+    transform: rotateY(180deg);
+
+    @media (max-width: 767.98px) {
+      padding-top: 8%;
+      padding-bottom: 84%;
+    }
+
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      padding-bottom: 75%;
+    }
+
+    .inner{
+      padding: 0 15% 0 15%;
+      font-size: 5vw;
+      /*background-size: cover;
+      font-family: 'balloonbold';*/
+      transform: rotateY(180deg);
+
+      @media (min-width: 768px) and (max-width: 991.98px) {
+        font-size: 3.5vw;
+      }
+
+      @media (min-width: 992px) {
+        font-size: 2vw;
+      }
+
+      @media (min-width: 1200px) {
+        font-size: 1.4vw;
+      }
+
+      @media (min-width: 2200px) {
+        font-size: 1vw;
+      }
+
+
+    }
+  }
+
+
+  blockquote.electric {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/electric.svg);
+    width: 95%;
+    font-size: 5vw;
+    font-style: italic;
+    padding: 10% 6% 30% 0%;
+
+
+    @media (max-width: 767.98px) {
+      padding: 10% 6% 70% 0%;
+
+      h4 {
+        font-size: 1.5em;
+      }
+    }
+
+    @media (min-width: 768px) {
+      font-size: 1.5vw;
+    }
+
+    .inner {
+      margin-left: 7%;
+      margin-right: 20%;
+
+
+      @media (max-width: 767.98px) {
+        margin-left: 12%;
+        margin-right: 27%;
+      }
+    }
+  }
+}
+
+blockquote.electric span {
+  display: block;
+  font-size: 1.6vw;
+  font-weight: bold;
+}
+
+blockquote.electric-reverse span {
+  display: block;
+  font-size: 1.6vw;
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+.comofunciona {
+  blockquote.electric {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/electric.svg);
+    width: 100%;
+    font-style: italic;
+    padding: 10% 6% 30% 0%;
+
+    @media (max-width: 767.98px) {
+      padding: 10% 6% 65% 0%;
+    }
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      padding: 5% 6% 39% 0%;
+    }
+
+    .inner {
+      margin-left: 13%;
+      margin-right: 27%;
+      font-size: 1.1vw;
+
+      @media (max-width: 1199.98px) {
+        font-size: 2.7vw;
+        padding-top: 5%;
+      }
+      @media (max-width: 767.98px) {
+        font-size: 4vw;
+      }
+
+      .small {
+        font-size: 0.9em;
+      }
+    }
+  }
+
+  blockquote.electric-reverse {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/electric.svg);
+    width: 100%;
+    font-style: italic;
+    padding: 10% 6% 30% 0%;
+    transform: rotateY(180deg);
+
+    @media (max-width: 767.98px) {
+      padding: 10% 6% 80% 0%;
+    }
+
+
+    .inner {
+      font-size: 1.1vw;
+      margin-left: 13%;
+      margin-right: 27%;
+      transform: rotateY(180deg);
+    }
+  }
+
+  blockquote.electric span {
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+
+  blockquote.electric-reverse span {
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+
+
+
+  blockquote.speech {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/speech-bubble.svg);
+    width: 90%;
+    padding-top: 6%;
+    padding-bottom: 20%;
+
+    @media (min-width: 1500px) {
+      padding-bottom: 35%;
+    }
+
+    @media (max-width: 1199.98px) {
+      padding-bottom: 30%;
+    }
+    @media (max-width: 767.98px) {
+      padding-bottom: 55%;
+    }
+
+    .inner{
+      padding: 0% 15% 0 15%;
+      font-size: 1.7vw;
+      background-size: cover;
+      font-family: 'balloonbold';
+
+      @media (max-width: 1199.98px) {
+        font-size: 2.7vw;
+        padding-top: 2%;
+      }
+      @media (max-width: 767.98px) {
+        padding: 2% 15% 0 15%;
+        font-size: 5vw;
+      }
+
+    }
+  }
+
+  blockquote.speech-reverse {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/speech-bubble.svg);
+    width: 90%;
+    padding-top: 6%;
+    padding-bottom: 20%;
+    transform: rotateY(180deg);
+
+    @media (min-width: 1500px) {
+      padding-bottom: 35%;
+    }
+
+    @media (max-width: 1199.98px) {
+      padding-bottom: 30%;
+    }
+    @media (max-width: 767.98px) {
+      padding-bottom: 55%;
+    }
+
+    .inner{
+      padding: 0% 15% 0 15%;
+      font-size: 1.7vw;
+      background-size: cover;
+      font-family: 'balloonbold';
+      transform: rotateY(180deg);
+
+      @media (max-width: 1199.98px) {
+        font-size: 2.7vw;
+        padding-top: 2%;
+      }
+      @media (max-width: 767.98px) {
+        padding: 2% 15% 0 15%;
+        font-size: 5vw;
+      }
+    }
+  }
+
+
+}
+
+
+.downloads {
+  blockquote.electric {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/electric.svg);
+    width: 90%;
+    font-size: 1.1vw;
+    font-style: italic;
+    padding: 10% 6% 30% 0%;
+
+    .inner {
+      margin-left: 96px;
+      margin-right: 229px;
+    }
+  }
+
+  blockquote.electric-reverse {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/electric.svg);
+    width: 90%;
+    font-size: 1.1vw;
+    font-style: italic;
+    padding: 10% 6% 30% 0%;
+    transform: rotateY(180deg);
+
+    .inner {
+      margin-left: 96px;
+      margin-right: 229px;
+      transform: rotateY(180deg);
+    }
+  }
+
+  blockquote.electric span {
+    display: block;
+    font-size: 1.6vw;
+    font-weight: bold;
+  }
+
+  blockquote.electric-reverse span {
+    display: block;
+    font-size: 1.6vw;
+    font-weight: bold;
+  }
+
+}
