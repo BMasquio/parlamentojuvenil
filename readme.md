@@ -47,6 +47,7 @@ SUBSCRIPTIONS_END=yyyy-mm-dd
 
 ####Escolas não cadastradas de alunos cadastrados
 ```
+select count(*) from (select distinct escola from seeduc where escola not in (select name from schools) order by escola) as aux;
 select distinct escola from seeduc where escola not in (select name from schools) order by escola;
 ```
 
