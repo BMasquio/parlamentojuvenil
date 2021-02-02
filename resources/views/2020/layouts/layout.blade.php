@@ -14,11 +14,13 @@
         <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
         <![endif]-->
 
-        <link rel="shortcut icon" href="2020/img/favicon.ico">
+        <link rel="shortcut icon" href="/2020/img/favicon.ico">
         <link rel="stylesheet" href="{{ mix('css/app.css')}}">
 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.js"></script>
-        <script src="//cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
+
+        <script src="{{mix('js/app.js')}}"></script>
+{{--        <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.js"></script>--}}
+{{--        <script src="//cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>--}}
 
         <script src="/js/receita.js"></script>
 

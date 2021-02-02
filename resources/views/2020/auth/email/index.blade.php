@@ -8,10 +8,10 @@
                 <div class="offset-1 col-10 offset-md-3 col-md-6 offset-lg-4 col-lg-4">
                     <h3 class="identify-title">Identifique-se</h3>
 
-                    <form id="email-register-login-form" method="POST" action="{{ route('auth.login.email') }}" id="loginform" class="form-signin">
-                        {{ csrf_field() }}
+                    <button form="emailRegisterLoginForm" type="submit" value="register" class="btn btn-lg btn-block btn-danger btn-signup">Cadastre-se</button>
 
-                        <fieldset>
+                    <form id="emailRegisterLoginForm" method="POST" action="{{ route('auth.login.email') }}">
+                        @csrf
                             <div class="row text-left">
                                 <label for="email" class="control-label">E-mail</label>
                                 <input class="form-control email-title" placeholder="E-mail" name="email" type="text">
@@ -31,20 +31,19 @@
                             </div>
                             <div class="row subscribe-buttons mt-5 ">
                                 <div class="col-6 signin-btn-container">
-                                    <button type="submit" value="login" class="btn btn-lg btn-block btn-success btn-signin">Entre</button>
+                                    <button form="emailRegisterLoginForm" value="login" class="btn btn-lg btn-block btn-success btn-signin">Entre</button>
                                 </div>
                                 <div class="col-6">
-                                    <button type="submit" value="register" class="btn btn-lg btn-block btn-danger btn-signup">Cadastre-se</button>
+                                    <button form="emailRegisterLoginForm" type="submit" value="register" class="btn btn-lg btn-block btn-danger btn-signup">Cadastre-se</button>
                                 </div>
 
                                 <div class="col-12">
                                     <br>
-                                    <button type="submit" value="password_reset" class="btn btn-lg btn-block btn-info btn-password-reset">Enviar nova senha</button>
+                                    <button form="emailRegisterLoginForm" type="submit" value="password_reset" class="btn btn-lg btn-block btn-info btn-password-reset">Enviar nova senha</button>
                                 </div>
                             </div>
 
 
-                        </fieldset>
                     </form>
                 </div>
             </div>
@@ -61,7 +60,7 @@
 
 @section('page-javascripts')
     <script>
-        var formId = 'email-register-login-form';
+        var formId = 'emailRegisterLoginForm';
 
         function processForm(e) {
             if (e.preventDefault) {
