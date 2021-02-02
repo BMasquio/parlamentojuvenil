@@ -13,45 +13,9 @@
         <!--[if IE]>
         <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
         <![endif]-->
-        <!-- ********** FIM - MANTIDOS DO SITE ANTIGO ********** -->
 
-        <!-- ************* DO SITE 2019 ************* -->
-
-        <!-- Custom fonts for this template -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-        <!-- SWIPER -->
-        <link rel="stylesheet" href="/templates/{{ get_current_year() }}/assets/css/swiper.min.css">
-
-        <!-- Custom styles for this template -->
-        <link href="/templates/{{ get_current_year() }}/assets/css/freelancer.min.css" rel="stylesheet">
-        <!-- FONTES  -->
-        <link href="/templates/{{ get_current_year() }}/assets/fonts/helvetica-neue/style.css" rel="stylesheet" type="text/css">
-
-        <link href="/templates/{{ get_current_year() }}/assets/css/custom.css" rel="stylesheet" type="text/css">
-
-        <link rel="shortcut icon" href="/templates/{{ get_current_year() }}/assets/img/favicon.ico">
-
-    <!-- ********** FIM - DO SITE 2019 ********** -->
-
-        <!-- ************* ATUALIZAÇÃO 2020 ************* -->
-
-        <link href="/templates/2020/assets/fonts/ballon/stylesheet.css" rel="stylesheet" type="text/css">
-        <link href="/templates/2020/assets/fonts/antique-olive-compact/stylesheet.css" rel="stylesheet" type="text/css">
-
-        <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
-
-
-        <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
-
-        <!-- ************* FINAL ATUALIZAÇÃO 2020 ************* -->
-
-        <!-- ************* MANTIDOS DO SITE ANTIGO ************* -->
-        <!--[if IE]>
-        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+        <link rel="shortcut icon" href="2020/img/favicon.ico">
+        <link rel="stylesheet" href="{{ mix('css/app.css')}}">
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.js"></script>
         <script src="//cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
@@ -75,7 +39,7 @@
         <div class="container-fluid">
             <div class="col-6 offset-3 col-md-6 col-lg-2 offset-lg-1">
                 <a class="navbar-brand js-scroll-trigger" href="/#page-top">
-                    <img class="logo-parlamento img-fluid" src="/templates/{{ get_current_year() }}/assets/img/logo-parlamento.png">
+                    <img class="logo-parlamento img-fluid" src="/2020/img/logo-parlamento.png">
                 </a>
             </div>
 
@@ -89,7 +53,7 @@
             </div>
 
             <div class="col-1 pull-right logo-alerj-topo d-none d-lg-block">
-                <img class="logo-alerj img-fluid" src="/templates/{{ get_current_year() }}/assets/img/logo-alerj-topo.png">
+                <img class="logo-alerj img-fluid" src="/2020/img/logo-alerj-topo.png">
                 <div class="edicao2020 text-center"> EDIÇÃO 2020 </div>
             </div>
         </div>
@@ -110,18 +74,12 @@
             <div class="row d-flex align-items-center bd-highlight ">
 
                 <div class="col-md-5 col-lg-3 mb-5 mb-lg-0">
-                    {{--<h4 class="text-uppercase mb-4">Around the Web</h4>--}}
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">
                             <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://www.facebook.com/parlamentojuvenilrio/">
                                 <i class="fab fa-fw fa-facebook-f"></i>
                             </a>
                         </li>
-{{--                        <li class="list-inline-item">
-                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
-                                <i class="fab fa-fw fa-twitter"></i>
-                            </a>
-                        </li>--}}
                         <li class="list-inline-item">
                             <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://www.instagram.com/parlamentojuvenilrj/">
                                 <i class="fab fa-fw fa-instagram"></i>
@@ -148,28 +106,20 @@
                 <div class="col-6 offset-md-3 col-md-3 offset-lg-0 col-lg-2">
                     {{--<h4 class="text-uppercase mb-4">About Freelancer</h4>--}}
                     <p class="lead mb-0">
-                        <img src="/templates/2017/images/logo-governo.png" class="logo-governo img-fluid">
+                        <img src="/2020/img/logo-governo.png" class="logo-governo img-fluid">
                     </p>
                 </div>
 
                 <div class="col-6  col-md-3 col-lg-2">
                     {{--<h4 class="text-uppercase mb-4">About Freelancer</h4>--}}
                     <p class="lead mb-0">
-                        <img src="/templates/2017/images/logo-alerj.png" class="logo-governo img-fluid">
+                        <img src="/2020/img/logo-alerj.png" class="logo-governo img-fluid">
                     </p>
                 </div>
 
             </div>
         </div>
     </footer>
-
-{{--
-    <div class="copyright py-4 text-center text-white">
-        <div class="container">
-            <small>Copyright &copy; 2019 Assembleia Legislativa do Estado do Rio de Janeiro</small>
-        </div>
-    </div>
-    --}}
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-to-top d-lg-none position-fixed ">
