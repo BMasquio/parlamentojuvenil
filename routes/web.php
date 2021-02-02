@@ -13,7 +13,14 @@ use App\Http\Controllers\Subscriptions;
 use App\Http\Controllers\Vote;
 use App\Http\Controllers\FlagContest;
 use App\Http\Controllers\User;
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\Docs;
+use App\Http\Controllers\Api;
+use App\Http\Controllers\ApiSearch;
+use App\Http\Controllers\News;
+use App\Http\Controllers\Training;
+use App\Http\Controllers\Quiz;
+use App\Http\Controllers\Pages;
 
 /*
 |--------------------------------------------------------------------------
@@ -257,275 +264,225 @@ Route::group(
             return redirect()->route('admin.subscriptions');
         })->name('admin.home');
 
-        Route::get('/subscriptions', [
-            'as' => 'admin.subscriptions',
-            'uses' => 'Admin@index',
-        ]);
+        Route::get('/subscriptions', [Admin::class, 'index'])->name(
+            'admin.subscriptions'
+        );
 
-        Route::get('/schools', [
-            'as' => 'admin.schools',
-            'uses' => 'Admin@schools',
-        ]);
+        Route::get('/schools', [Admin::class, 'schools'])->name(
+            'admin.schools'
+        );
 
-        Route::get('/elected', [
-            'as' => 'admin.elected',
-            'uses' => 'Admin@elected',
-        ]);
+        Route::get('/elected', [Admin::class, 'elected'])->name(
+            'admin.elected'
+        );
 
-        Route::get('/seeduc', [
-            'as' => 'admin.seeduc',
-            'uses' => 'Admin@seeduc',
-        ]);
+        Route::get('/seeduc', [Admin::class, 'seeduc'])->name('admin.seeduc');
 
-        Route::get('/users', ['as' => 'admin.users', 'uses' => 'Admin@users']);
+        Route::get('/users', [Admin::class, 'users'])->name('admin.users');
 
         Route::get('/votes/{subscription_id}', [
-            'as' => 'admin.votes.student',
-            'uses' => 'Admin@votesPerStudent',
-        ]);
+            Admin::class,
+            'votesPerStudent',
+        ])->name('admin.votes.student');
 
-        Route::get('/vote/statistics', [
-            'as' => 'admin.vote.statistics',
-            'uses' => 'Admin@voteStatistics',
-        ]);
+        Route::get('/vote/statistics', [Admin::class, 'voteStatistics'])->name(
+            'admin.vote.statistics'
+        );
 
         Route::get('/training/{subscription}', [
-            'as' => 'admin.training',
-            'uses' => 'Admin@training',
-        ]);
+            Admin::class,
+            'training',
+        ])->name('admin.training');
 
-        Route::get('/contest', [
-            'as' => 'admin.contest',
-            'uses' => 'Admin@contest',
-        ]);
+        Route::get('/contest', [Admin::class, 'contest'])->name(
+            'admin.contest'
+        );
 
-        Route::get('/contest/votes', [
-            'as' => 'admin.contest-votes',
-            'uses' => 'Admin@contestVotes',
-        ]);
+        Route::get('/contest/votes', [Admin::class, 'contestVotes'])->name(
+            'admin.contest-votes'
+        );
 
         /// Must be last
-        Route::get('/{city}', ['as' => 'admin.city', 'uses' => 'Admin@city']);
+        Route::get('/{city}', [Admin::class, 'city'])->name('admin.city');
     }
 );
 
-//Route::get('subscriptions/schools', [
-//    'as' => 'subscriptions.schools',
-//    'uses' => 'Subscriptions@bySchool',
-//]);
-//
-//Route::get('subscriptions/students', [
-//    'as' => 'subscriptions.students',
-//    'uses' => 'Subscriptions@byStudent',
-//]);
-//
-//Route::group(['middleware' => 'check-student-age'], function () {
-//    Route::post('subscriptions', [
-//        'as' => 'subscriptions.store',
-//        'uses' => 'Subscriptions@store',
-//    ]);
-//});
-//
-//Route::post('subscriptions/start', [
-//    'as' => 'subscriptions.start',
-//    'uses' => 'Subscriptions@start',
-//]);
-//
-//Route::get('subscriptions/download', [
-//    'as' => 'subscriptions.download',
-//    'uses' => 'Subscriptions@download',
-//]);
-//
-//Route::get('subscriptions/ignore/{id}', [
-//    'as' => 'subscriptions.ignore',
-//    'uses' => 'Subscriptions@ignore',
-//]);
-//
-//Route::get('subscriptions/edit/{id}', [
-//    'as' => 'subscriptions.edit',
-//    'uses' => 'Subscriptions@edit',
-//]);
-//
-//Route::post('subscriptions/edit/{id}', [
-//    'as' => 'subscriptions.edit',
-//    'uses' => 'Subscriptions@update',
-//]);
-//
-//Route::group(
-//    [
-//        'prefix' => '/inscricao',
-//        'middleware' => [
-//            'subscribing',
-//            'auth',
-//            'student-login',
-//            'check-student-age',
-//        ],
-//    ],
-//    function () {
-//        Route::get('/', [
-//            'as' => 'subscriptions.index',
-//            'uses' => 'Subscriptions@index',
-//        ]);
-//    }
-//);
-//
-//Route::group(['prefix' => 'api/v1'], function () {
-//    Route::get('timeline/{year}', [
-//        'as' => 'api.timeline',
-//        'uses' => 'Api@getTimeline',
-//    ]);
-//
-//    Route::get('congressmen/{year}', [
-//        'as' => 'api.congressmen',
-//        'uses' => 'Api@getCongressmen',
-//    ]);
-//
-//    Route::get('subscriptions', [
-//        'as' => 'subscriptions',
-//        'uses' => 'Subscriptions@byState',
-//    ]);
-//
-//    Route::get('search/seeduc', [
-//        'as' => 'api.search.seeduc',
-//        'uses' => 'ApiSearch@seeduc',
-//    ]);
-//
-//    Route::get('search/contest', [
-//        'as' => 'api.search.contest',
-//        'uses' => 'ApiSearch@contest',
-//    ]);
-//
-//    Route::get('search/contest/votes', [
-//        'as' => 'api.search.contest.votes',
-//        'uses' => 'ApiSearch@contestVotes',
-//    ]);
-//
-//    Route::get('search/users', [
-//        'as' => 'api.search.users',
-//        'uses' => 'ApiSearch@users',
-//    ]);
-//
-//    Route::get('elected/{year?}', [
-//        'as' => 'api.elected',
-//        'uses' => 'Api@getElected',
-//    ]);
-//
-//    Route::get('vote/statistics/{year?}', [
-//        'as' => 'api.vote.statistics',
-//        'uses' => 'Api@getVoteStatistics',
-//    ]);
-//
-//    Route::post('validate/{type}', [
-//        'as' => 'api.validate',
-//        'uses' => 'Api@validateType',
-//    ]);
-//
-//    Route::post('seeduc/upload', [
-//        'as' => 'api.seeduc.upload',
-//        'uses' => 'Api@seeducUpload',
-//    ]);
-//});
-//
-//Route::get('article/{id}', [
-//    'as' => 'article.show',
-//    'uses' => 'News@showArticle',
-//]);
-//
-//Route::group(
-//    [
-//        'prefix' => '/training',
-//        'middleware' => [
-//            /*
-//             * Desabilitando os middlewares a pedido de todos poderem acessar (23/09)
-//
-//                'training',
-//                'auth',
-//                'student-login',
-//                'must-be-congressman',
-//             */
-//        ],
-//    ],
-//    function () {
-//        Route::get('/', ['as' => 'training.index', 'uses' => 'Training@index']);
-//        Route::post('/', [
-//            'as' => 'training.login',
-//            'uses' => 'Training@login',
-//        ]);
-//        Route::get('/content', [
-//            'as' => 'training.content',
-//            'uses' => 'Training@content',
-//        ]);
-//        Route::get('/watch/{video}', [
-//            'as' => 'training.watch',
-//            'uses' => 'Training@watch',
-//        ]);
-//        Route::get('/download/{document}', [
-//            'as' => 'training.download',
-//            'uses' => 'Training@download',
-//        ]);
-//        Route::get('/logout', [
-//            'as' => 'training.download',
-//            'uses' => 'Training@logout',
-//        ]);
-//
-//        Route::group(
-//            [
-//                'prefix' => '/quiz',
-//                'middleware' => ['training', 'auth', 'student-login'],
-//            ],
-//            function () {
-//                Route::get('/', ['as' => 'quiz.index', 'uses' => 'Quiz@index']);
-//                Route::get('/{id}/questions', [
-//                    'as' => 'quiz.questions',
-//                    'uses' => 'Quiz@questions',
-//                ]);
-//                Route::get('/{id}/answer/{number}/{answer}', [
-//                    'as' => 'quiz.answer',
-//                    'uses' => 'Quiz@answer',
-//                ]);
-//                Route::post('/answers/', [
-//                    'as' => 'quiz.answers',
-//                    'uses' => 'Quiz@answers',
-//                ]);
-//                Route::get('/result', [
-//                    'as' => 'quiz.result',
-//                    'uses' => 'Quiz@result',
-//                ]);
-//                Route::get('/result/{id}', [
-//                    'as' => 'quiz.result',
-//                    'uses' => 'Quiz@result',
-//                ]);
-//            }
-//        );
-//    }
-//);
-//
-//Route::get('{year}', ['as' => 'edition', 'uses' => 'Pages@edition'])->where(
-//    'year',
-//    '[0-9][0-9][0-9][0-9]'
-//);
-//
-//Route::get('{year}/gallery', [
-//    'as' => 'page.gallery',
-//    'uses' => 'Pages@gallery',
-//]);
-//Route::get('{year}/news', ['as' => 'page.news', 'uses' => 'Pages@news']);
-//
-//Route::get('{year}/members', [
-//    'as' => 'page.members',
-//    'uses' => 'Pages@members',
-//]);
-//Route::get('{year}/clipping', [
-//    'as' => 'page.clipping',
-//    'uses' => 'Pages@clipping',
-//]);
-//
-//Route::get('/fillregional', [
-//    'as' => 'fillregional',
-//    'uses' => 'Subscriptions@fillRegional',
-//]);
-//
-//Route::get('/must-be-congressman', [
-//    'as' => 'must.be.congressman',
-//    'uses' => 'Auth@mustBeCongressman',
-//]);
+Route::get('subscriptions/schools', [Subscriptions::class, 'bySchool'])->name(
+    'subscriptions.schools'
+);
+
+Route::get('subscriptions/students', [Subscriptions::class, 'byStudent'])->name(
+    'subscriptions.students'
+);
+
+Route::group(['middleware' => 'check-student-age'], function () {
+    Route::post('subscriptions', [Subscriptions::class, 'store'])->name(
+        'subscriptions.store'
+    );
+});
+
+Route::post('subscriptions/start', [Subscriptions::class, 'start'])->name(
+    'subscriptions.start'
+);
+
+Route::get('subscriptions/download', [Subscriptions::class, 'download'])->name(
+    'subscriptions.download'
+);
+
+Route::get('subscriptions/ignore/{id}', [Subscriptions::class, 'ignore'])->name(
+    'subscriptions.ignore'
+);
+
+Route::get('subscriptions/edit/{id}', [Subscriptions::class, 'edit'])->name(
+    'subscriptions.edit'
+);
+
+Route::post('subscriptions/edit/{id}', [Subscriptions::class, 'update'])->name(
+    'subscriptions.edit'
+);
+
+Route::group(
+    [
+        'prefix' => '/inscricao',
+        'middleware' => [
+            'subscribing',
+            'auth',
+            'student-login',
+            'check-student-age',
+        ],
+    ],
+    function () {
+        Route::get('/', [Subscriptions::class, 'index'])->name(
+            'subscriptions.index'
+        );
+    }
+);
+
+Route::group(['prefix' => 'api/v1'], function () {
+    Route::get('timeline/{year}', [Api::class, 'getTimeline'])->name(
+        'api.timeline'
+    );
+
+    Route::get('congressmen/{year}', [Api::class, 'getCongressmen'])->name(
+        'api.congressmen'
+    );
+
+    Route::get('subscriptions', [Subscriptions::class, 'byState'])->name(
+        'subscriptions'
+    );
+
+    Route::get('search/seeduc', [ApiSearch::class, 'seeduc'])->name(
+        'api.search.seeduc'
+    );
+
+    Route::get('search/contest', [ApiSearch::class, 'contest'])->name(
+        'api.search.contest'
+    );
+
+    Route::get('search/contest/votes', [
+        ApiSearch::class,
+        'contestVotes',
+    ])->name('api.search.contest.votes');
+
+    Route::get('search/users', [ApiSearch::class, 'users'])->name(
+        'api.search.users'
+    );
+
+    Route::get('elected/{year?}', [Api::class, 'getElected'])->name(
+        'api.elected'
+    );
+
+    Route::get('vote/statistics/{year?}', [
+        Api::class,
+        'getVoteStatistics',
+    ])->name('api.vote.statistics');
+
+    Route::post('validate/{type}', [Api::class, 'validateType'])->name(
+        'api.validate'
+    );
+
+    Route::post('seeduc/upload', [Api::class, 'seeducUpload'])->name(
+        'api.seeduc.upload'
+    );
+});
+
+Route::get('article/{id}', [News::class, 'showArticle'])->name('article.show');
+
+Route::group(
+    [
+        'prefix' => '/training',
+        'middleware' => [
+            /*
+             * Desabilitando os middlewares a pedido de todos poderem acessar (23/09)
+
+                'training',
+                'auth',
+                'student-login',
+                'must-be-congressman',
+             */
+        ],
+    ],
+    function () {
+        Route::get('/', ['as' => 'training.index', 'uses' => 'Training@index']);
+        Route::post('/', [Training::class, 'login'])->name('training.login');
+        Route::get('/content', [Training::class, 'content'])->name(
+            'training.content'
+        );
+        Route::get('/watch/{video}', [Training::class, 'watch'])->name(
+            'training.watch'
+        );
+        Route::get('/download/{document}', [Training::class, 'download'])->name(
+            'training.download'
+        );
+        Route::get('/logout', [Training::class, 'logout'])->name(
+            'training.download'
+        );
+
+        Route::group(
+            [
+                'prefix' => '/quiz',
+                'middleware' => ['training', 'auth', 'student-login'],
+            ],
+            function () {
+                Route::get('/', [Quiz::class, 'index'])->name('quiz.index');
+                Route::get('/{id}/questions', [Quiz::class, 'questions'])->name(
+                    'quiz.questions'
+                );
+                Route::get('/{id}/answer/{number}/{answer}', [
+                    Quiz::class,
+                    'answer',
+                ])->name('quiz.answer');
+                Route::post('/answers/', [Quiz::class, 'answers'])->name(
+                    'quiz.answers'
+                );
+                Route::get('/result', [Quiz::class, 'result'])->name(
+                    'quiz.result'
+                );
+                Route::get('/result/{id}', [Quiz::class, 'result'])->name(
+                    'quiz.result'
+                );
+            }
+        );
+    }
+);
+
+Route::get('{year}/news', [Pages::class, 'news'])->name('page.news');
+
+Route::get('{year}', [Pages::class, 'edition'])
+    ->where('year', '[0-9][0-9][0-9][0-9]')
+    ->name('edition');
+
+Route::get('{year}/gallery', [Pages::class, 'gallery'])->name('page.gallery');
+
+Route::get('{year}/members', [Pages::class, 'members'])->name('page.members');
+Route::get('{year}/clipping', [Pages::class, 'clipping'])->name(
+    'page.clipping'
+);
+
+Route::get('/fillregional', [Subscriptions::class, 'fillRegional'])->name(
+    'fillregional'
+);
+
+Route::get('/must-be-congressman', [Auth::class, 'mustBeCongressman'])->name(
+    'must.be.congressman'
+);
