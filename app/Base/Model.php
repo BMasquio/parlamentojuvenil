@@ -4,9 +4,13 @@ namespace App\Base;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use OwenIt\Auditing\Auditable as AuditableTrait;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Model extends Eloquent
+class Model extends Eloquent implements Auditable
 {
+    use AuditableTrait;
+
     protected $dates = ['created_at', 'updated_at'];
 
     protected $columns = []; // add all columns from you table

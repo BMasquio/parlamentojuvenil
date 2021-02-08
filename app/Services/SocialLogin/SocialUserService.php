@@ -3,6 +3,8 @@
 namespace App\Services\SocialLogin;
 
 use Auth;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use League\Flysystem\Exception;
@@ -237,9 +239,19 @@ class SocialUserService
             );
         }
 
-        Auth::login(loggedUser()->user);
+        Auth::login($user = loggedUser()->user);
+
+        if (method_exists($this, 'afterAuthenticated')) {
+            return $this->afterAuthenticated(\Auth::user());
+        }
 
         $this->updateLoggedSubscription();
+    }
+
+    public function afterAuthenticated($user)
+    {
+        $user->last_login_at = Carbon::now();
+        $user->save();
     }
 
     public function findOrCreateUserByStudent(

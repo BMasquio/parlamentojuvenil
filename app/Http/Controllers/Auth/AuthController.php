@@ -6,6 +6,8 @@ use App\Models\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -59,6 +61,13 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'last_login_at' => now(),
         ]);
+    }
+
+    function authenticated(Request $request, $user)
+    {
+        $user->last_login_at = Carbon::now();
+        $user->save();
     }
 }
