@@ -29,5 +29,7 @@
 		@yield('html.body')
 
 		@yield('html.footer')
+
+        @include('partials.livereload')
 	</body>
 </html>
