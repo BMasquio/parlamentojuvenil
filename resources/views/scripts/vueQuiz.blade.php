@@ -115,7 +115,7 @@
                     return all;
                 },
             },
-            
+
             mounted: function() {
                 this.loadQuestions();
             }
