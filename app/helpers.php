@@ -35,6 +35,13 @@ function make_image_url($url, $width = 350)
     return $url;
 }
 
+if (!function_exists('starts_with')) {
+    function starts_with($haystack, $needle)
+    {
+        return \Illuminate\Support\Str::startsWith($haystack, $needle);
+    }
+}
+
 /**
  * Clean string,
  * minimize and remove space, accent and other

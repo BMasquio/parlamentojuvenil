@@ -54,13 +54,29 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'auth.basic' =>
+            \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'cannot-re-subscribe' => \App\Http\Middleware\CannotResubscribe::class,
+        'check-student-age' => \App\Http\Middleware\CheckStudentAge::class,
+        'cors' => \App\Http\Middleware\Cors::class,
+        'flag-contest-can-vote-only-once' =>
+            \App\Http\Middleware\FlagContestCanVoteOnlyOnce::class,
+        'flag-contest-subscribing' =>
+            \App\Http\Middleware\FlagContestSubscribing::class,
+        'flag-contest-voting' => \App\Http\Middleware\FlagContestVoting::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'must-be-congressman' => \App\Http\Middleware\MustBeCongressman::class,
+        'only-administrators' => \App\Http\Middleware\OnlyAdministrators::class,
+        'password.confirm' =>
+            \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'student-login' => \App\Http\Middleware\StudentLogin::class,
+        'subscribing' => \App\Http\Middleware\Subscribing::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'training' => \App\Http\Middleware\Training::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'voting' => \App\Http\Middleware\Voting::class,
     ];
 }

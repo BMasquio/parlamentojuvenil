@@ -7,9 +7,9 @@
             <title>{{ $html_title }}</title>
         @endif
 
-		<meta name="keywords" content="{!! $html_keywords or '' !!}" />
-		<meta name="description" content="{!! $html_description or '' !!}" />
-		<meta name="Author" content="{!! $html_author or '' !!}" />
+		<meta name="keywords" content="{!! $html_keywords ?? '' !!}" />
+		<meta name="description" content="{!! $html_description ?? '' !!}" />
+		<meta name="Author" content="{!! $html_author ?? '' !!}" />
 
 		@if (isset($html_meta_tags))
 		    @foreach ($html_meta_tags as $meta)

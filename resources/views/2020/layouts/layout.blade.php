@@ -19,10 +19,6 @@
 
 
         <script src="{{mix('js/app.js')}}"></script>
-{{--        <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.2.6/vue.js"></script>--}}
-{{--        <script src="//cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>--}}
-
-        <script src="/js/receita.js"></script>
 
         <script>
             window.laravel = {year: '{{ get_current_year() }}'};
@@ -129,36 +125,6 @@
             <i class="fa fa-chevron-up"></i>
         </a>
     </div>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="/templates/{{ get_current_year() }}/assets/js/jquery/jquery.min.js"></script>
-    <script src="/templates/{{ get_current_year() }}/assets/js/bootstrap/bootstrap.bundle.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="/templates/{{ get_current_year() }}/assets/js/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="/templates/{{ get_current_year() }}/assets/js/freelancer.js"></script>
-
-    <!-- Swiper JS -->
-    <script src="/templates/{{ get_current_year() }}/assets/js/swiper.min.js"></script>
-
-    <!-- Initialize Swiper -->
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    </script>
 
     @yield('page-javascripts')
 

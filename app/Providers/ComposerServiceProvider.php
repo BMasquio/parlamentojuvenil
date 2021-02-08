@@ -100,15 +100,7 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('loggedUserJson', loggedUser()->toJson() ?? null);
         });
 
-        //		/**
-        //		 * Calendar
-        //		 */
-        //		View::composer('*', function($view)
-        //		{
-        //			$user = Auth::user();
-        //
-        //			$view->with("default_events_url", $user ? route('events.user', $user->id) : '/');
-        //		});
+        return $view;
     }
 
     /**
