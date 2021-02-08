@@ -230,6 +230,8 @@ return [
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
+
+        OwenIt\Auditing\AuditingServiceProvider::class,
     ],
 
     /*
