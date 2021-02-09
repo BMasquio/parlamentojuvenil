@@ -1,19 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
-
-
-//AQUI
-
 @import "swiper.css";
 @import "freelancer.min.css";
 
 //FONTS
+@import '../fonts/fonts.css';
 @import "fonts/helvetica-neue/style.css";
 @import "custom.css";
 @import "fonts/ballon/stylesheet.css";
 @import "fonts/antique-olive-compact/stylesheet.css";
-
-@import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
 
 $fa-font-path:        "../webfonts";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
