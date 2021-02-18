@@ -94,7 +94,8 @@ class Admin extends BaseController
     {
         $year = get_current_year();
 
-        $schools = Subscription::join('students', 'students.id', '=', 'subscriptions.student_id')
+        $schools = Subscription::distinct()
+            ->join('students', 'students.id', '=', 'subscriptions.student_id')
             ->select([
                 'students.school',
                 'students.city',
