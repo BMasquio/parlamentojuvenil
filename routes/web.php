@@ -50,12 +50,8 @@ Route::group(['prefix' => '/auth'], function () {
 
     Route::get('/login', [Auth::class, 'index'])->name('auth.index');
 
-    Route::get('/login/email', [EmailAuth::class, 'index'])->name(
-        'auth.login.email'
-    );
-    Route::post('/login/email', [EmailAuth::class, 'post'])->name(
-        'auth.login.email.post'
-    );
+    Route::get('/login/email', [EmailAuth::class, 'index'])->name('auth.login.email');
+    Route::post('/login/email', [EmailAuth::class, 'post'])->name('auth.login.email.post');
     Route::post('/login/email/register', [EmailAuth::class, 'register'])->name(
         'auth.login.email.register'
     );
@@ -65,24 +61,21 @@ Route::group(['prefix' => '/auth'], function () {
     Route::get('/login/email/password', [EmailAuth::class, 'password'])->name(
         'auth.login.email.password'
     );
-    Route::post('/login/email/password', [
-        EmailAuth::class,
-        'resetPassword',
-    ])->name('auth.login.email.password');
+    Route::post('/login/email/password', [EmailAuth::class, 'resetPassword'])->name(
+        'auth.login.email.password'
+    );
 
-    Route::get('/student/identify', [
-        StudentController::class,
-        'identify',
-    ])->name('student.identify');
+    Route::get('/student/identify', [StudentController::class, 'identify'])->name(
+        'student.identify'
+    );
 
     /*
      * Social
      */
     Route::group(['prefix' => 'social'], function () {
-        Route::get('/login/{socialNetwork}', [
-            SocialAuthController::class,
-            'login',
-        ])->name('auth.social.redirect');
+        Route::get('/login/{socialNetwork}', [SocialAuthController::class, 'login'])->name(
+            'auth.social.redirect'
+        );
 
         Route::get('/login/{socialNetwork}/callback', [
             SocialAuthController::class,
@@ -94,9 +87,7 @@ Route::group(['prefix' => '/auth'], function () {
      * Student
      */
     Route::group(['prefix' => 'student'], function () {
-        Route::post('/login', [StudentController::class, 'login'])->name(
-            'auth.student.login'
-        );
+        Route::post('/login', [StudentController::class, 'login'])->name('auth.student.login');
         Route::get('/wrongAge', [StudentController::class, 'wrongAge'])->name(
             'auth.student.wrong-age'
         );
@@ -115,37 +106,24 @@ Route::group(
         ],
     ],
     function () {
-        Route::get('/', [Subscriptions::class, 'index'])->name(
-            'subscribe.index'
-        );
+        Route::get('/', [Subscriptions::class, 'index'])->name('subscribe.index');
     }
 );
 
 Route::group(['prefix' => '/vote'], function () {
-    Route::group(
-        ['middleware' => ['voting', 'auth', 'student-login']],
-        function () {
-            Route::get('/', [Vote::class, 'index'])->name('vote.index');
+    Route::group(['middleware' => ['voting', 'auth', 'student-login']], function () {
+        Route::get('/', [Vote::class, 'index'])->name('vote.index');
 
-            Route::get('/in/{subscription_id}', [Vote::class, 'voteIn'])->name(
-                'vote.in'
-            );
+        Route::get('/in/{subscription_id}', [Vote::class, 'voteIn'])->name('vote.in');
 
-            Route::get('/confirm/{subscription_id}', [
-                Vote::class,
-                'confirm',
-            ])->name('vote.confirm');
+        Route::get('/confirm/{subscription_id}', [Vote::class, 'confirm'])->name('vote.confirm');
 
-            Route::get('/error', [Vote::class, 'error'])->name('vote.error');
+        Route::get('/error', [Vote::class, 'error'])->name('vote.error');
 
-            Route::get('/delete/my/votes', [
-                Vote::class,
-                'deleteMyVotes',
-            ])->name('vote.delete');
-        }
-    );
+        Route::get('/delete/my/votes', [Vote::class, 'deleteMyVotes'])->name('vote.delete');
+    });
 
-    Route::get('/voted', ['as' => 'vote.voted', 'uses' => 'Vote@voted']);
+    Route::get('/voted', [Vote::class, 'deleteMyVotes'])->name('vote.voted');
 });
 
 Route::group(
@@ -159,13 +137,9 @@ Route::group(
         ],
     ],
     function () {
-        Route::get('/', [FlagContest::class, 'subscribe'])->name(
-            'flag-contest.subscribe.index'
-        );
+        Route::get('/', [FlagContest::class, 'subscribe'])->name('flag-contest.subscribe.index');
 
-        Route::post('/', [FlagContest::class, 'post'])->name(
-            'flag-contest.subscribe.post'
-        );
+        Route::post('/', [FlagContest::class, 'post'])->name('flag-contest.subscribe.post');
 
         Route::get('/confirm/email/{confirmation_key}/{email}', [
             FlagContest::class,
@@ -185,21 +159,15 @@ Route::group(
         ],
     ],
     function () {
-        Route::get('/', [FlagContest::class, 'vote'])->name(
-            'flag-contest.vote.index'
-        );
+        Route::get('/', [FlagContest::class, 'vote'])->name('flag-contest.vote.index');
 
         Route::get('/select/{flag_id}', [FlagContest::class, 'select'])->name(
             'flag-contest.vote.select'
         );
 
-        Route::get('/confirm', [FlagContest::class, 'confirm'])->name(
-            'flag-contest.vote.confirm'
-        );
+        Route::get('/confirm', [FlagContest::class, 'confirm'])->name('flag-contest.vote.confirm');
 
-        Route::get('/cast', [FlagContest::class, 'cast'])->name(
-            'flag-contest.vote.cast'
-        );
+        Route::get('/cast', [FlagContest::class, 'cast'])->name('flag-contest.vote.cast');
     }
 );
 
@@ -210,9 +178,7 @@ Route::group(['prefix' => '/flag-contest/vote'], function () {
 });
 
 Route::group(['prefix' => '/vote'], function () {
-    Route::get('/elected/round/{round}', [Vote::class, 'elected'])->name(
-        'vote.elected'
-    );
+    Route::get('/elected/round/{round}', [Vote::class, 'elected'])->name('vote.elected');
 });
 
 Route::group(['prefix' => '/', 'middleware' => ['auth']], function () {
@@ -257,55 +223,36 @@ Route::get('download/{file}', [
     },
 ])->name('download');
 
-Route::group(
-    ['prefix' => 'admin', 'middleware' => ['auth', 'only-administrators']],
-    function () {
-        Route::get('/', function () {
-            return redirect()->route('admin.subscriptions');
-        })->name('admin.home');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'only-administrators']], function () {
+    Route::get('/', function () {
+        return redirect()->route('admin.subscriptions');
+    })->name('admin.home');
 
-        Route::get('/subscriptions', [Admin::class, 'index'])->name(
-            'admin.subscriptions'
-        );
+    Route::get('/subscriptions', [Admin::class, 'index'])->name('admin.subscriptions');
 
-        Route::get('/schools', [Admin::class, 'schools'])->name(
-            'admin.schools'
-        );
+    Route::get('/schools', [Admin::class, 'schools'])->name('admin.schools');
 
-        Route::get('/elected', [Admin::class, 'elected'])->name(
-            'admin.elected'
-        );
+    Route::get('/elected', [Admin::class, 'elected'])->name('admin.elected');
 
-        Route::get('/seeduc', [Admin::class, 'seeduc'])->name('admin.seeduc');
+    Route::get('/seeduc', [Admin::class, 'seeduc'])->name('admin.seeduc');
 
-        Route::get('/users', [Admin::class, 'users'])->name('admin.users');
+    Route::get('/users', [Admin::class, 'users'])->name('admin.users');
 
-        Route::get('/votes/{subscription_id}', [
-            Admin::class,
-            'votesPerStudent',
-        ])->name('admin.votes.student');
+    Route::get('/votes/{subscription_id}', [Admin::class, 'votesPerStudent'])->name(
+        'admin.votes.student'
+    );
 
-        Route::get('/vote/statistics', [Admin::class, 'voteStatistics'])->name(
-            'admin.vote.statistics'
-        );
+    Route::get('/vote/statistics', [Admin::class, 'voteStatistics'])->name('admin.vote.statistics');
 
-        Route::get('/training/{subscription}', [
-            Admin::class,
-            'training',
-        ])->name('admin.training');
+    Route::get('/training/{subscription}', [Admin::class, 'training'])->name('admin.training');
 
-        Route::get('/contest', [Admin::class, 'contest'])->name(
-            'admin.contest'
-        );
+    Route::get('/contest', [Admin::class, 'contest'])->name('admin.contest');
 
-        Route::get('/contest/votes', [Admin::class, 'contestVotes'])->name(
-            'admin.contest-votes'
-        );
+    Route::get('/contest/votes', [Admin::class, 'contestVotes'])->name('admin.contest-votes');
 
-        /// Must be last
-        Route::get('/{city}', [Admin::class, 'city'])->name('admin.city');
-    }
-);
+    /// Must be last
+    Route::get('/{city}', [Admin::class, 'city'])->name('admin.city');
+});
 
 Route::get('subscriptions/schools', [Subscriptions::class, 'bySchool'])->name(
     'subscriptions.schools'
@@ -316,14 +263,10 @@ Route::get('subscriptions/students', [Subscriptions::class, 'byStudent'])->name(
 );
 
 Route::group(['middleware' => 'check-student-age'], function () {
-    Route::post('subscriptions', [Subscriptions::class, 'store'])->name(
-        'subscriptions.store'
-    );
+    Route::post('subscriptions', [Subscriptions::class, 'store'])->name('subscriptions.store');
 });
 
-Route::post('subscriptions/start', [Subscriptions::class, 'start'])->name(
-    'subscriptions.start'
-);
+Route::post('subscriptions/start', [Subscriptions::class, 'start'])->name('subscriptions.start');
 
 Route::get('subscriptions/download', [Subscriptions::class, 'download'])->name(
     'subscriptions.download'
@@ -333,9 +276,7 @@ Route::get('subscriptions/ignore/{id}', [Subscriptions::class, 'ignore'])->name(
     'subscriptions.ignore'
 );
 
-Route::get('subscriptions/edit/{id}', [Subscriptions::class, 'edit'])->name(
-    'subscriptions.edit'
-);
+Route::get('subscriptions/edit/{id}', [Subscriptions::class, 'edit'])->name('subscriptions.edit');
 
 Route::post('subscriptions/edit/{id}', [Subscriptions::class, 'update'])->name(
     'subscriptions.edit'
@@ -344,66 +285,39 @@ Route::post('subscriptions/edit/{id}', [Subscriptions::class, 'update'])->name(
 Route::group(
     [
         'prefix' => '/inscricao',
-        'middleware' => [
-            'subscribing',
-            'auth',
-            'student-login',
-            'check-student-age',
-        ],
+        'middleware' => ['subscribing', 'auth', 'student-login', 'check-student-age'],
     ],
     function () {
-        Route::get('/', [Subscriptions::class, 'index'])->name(
-            'subscriptions.index'
-        );
+        Route::get('/', [Subscriptions::class, 'index'])->name('subscriptions.index');
     }
 );
 
 Route::group(['prefix' => 'api/v1'], function () {
-    Route::get('timeline/{year}', [Api::class, 'getTimeline'])->name(
-        'api.timeline'
+    Route::get('timeline/{year}', [Api::class, 'getTimeline'])->name('api.timeline');
+
+    Route::get('congressmen/{year}', [Api::class, 'getCongressmen'])->name('api.congressmen');
+
+    Route::get('subscriptions', [Subscriptions::class, 'byState'])->name('subscriptions');
+
+    Route::get('search/seeduc', [ApiSearch::class, 'seeduc'])->name('api.search.seeduc');
+
+    Route::get('search/contest', [ApiSearch::class, 'contest'])->name('api.search.contest');
+
+    Route::get('search/contest/votes', [ApiSearch::class, 'contestVotes'])->name(
+        'api.search.contest.votes'
     );
 
-    Route::get('congressmen/{year}', [Api::class, 'getCongressmen'])->name(
-        'api.congressmen'
+    Route::get('search/users', [ApiSearch::class, 'users'])->name('api.search.users');
+
+    Route::get('elected/{year?}', [Api::class, 'getElected'])->name('api.elected');
+
+    Route::get('vote/statistics/{year?}', [Api::class, 'getVoteStatistics'])->name(
+        'api.vote.statistics'
     );
 
-    Route::get('subscriptions', [Subscriptions::class, 'byState'])->name(
-        'subscriptions'
-    );
+    Route::post('validate/{type}', [Api::class, 'validateType'])->name('api.validate');
 
-    Route::get('search/seeduc', [ApiSearch::class, 'seeduc'])->name(
-        'api.search.seeduc'
-    );
-
-    Route::get('search/contest', [ApiSearch::class, 'contest'])->name(
-        'api.search.contest'
-    );
-
-    Route::get('search/contest/votes', [
-        ApiSearch::class,
-        'contestVotes',
-    ])->name('api.search.contest.votes');
-
-    Route::get('search/users', [ApiSearch::class, 'users'])->name(
-        'api.search.users'
-    );
-
-    Route::get('elected/{year?}', [Api::class, 'getElected'])->name(
-        'api.elected'
-    );
-
-    Route::get('vote/statistics/{year?}', [
-        Api::class,
-        'getVoteStatistics',
-    ])->name('api.vote.statistics');
-
-    Route::post('validate/{type}', [Api::class, 'validateType'])->name(
-        'api.validate'
-    );
-
-    Route::post('seeduc/upload', [Api::class, 'seeducUpload'])->name(
-        'api.seeduc.upload'
-    );
+    Route::post('seeduc/upload', [Api::class, 'seeducUpload'])->name('api.seeduc.upload');
 });
 
 Route::get('article/{id}', [News::class, 'showArticle'])->name('article.show');
@@ -423,20 +337,14 @@ Route::group(
         ],
     ],
     function () {
-        Route::get('/', ['as' => 'training.index', 'uses' => 'Training@index']);
+        Route::get('/', [Training::class, 'index'])->name('training.index');
         Route::post('/', [Training::class, 'login'])->name('training.login');
-        Route::get('/content', [Training::class, 'content'])->name(
-            'training.content'
-        );
-        Route::get('/watch/{video}', [Training::class, 'watch'])->name(
-            'training.watch'
-        );
+        Route::get('/content', [Training::class, 'content'])->name('training.content');
+        Route::get('/watch/{video}', [Training::class, 'watch'])->name('training.watch');
         Route::get('/download/{document}', [Training::class, 'download'])->name(
             'training.download'
         );
-        Route::get('/logout', [Training::class, 'logout'])->name(
-            'training.download'
-        );
+        Route::get('/logout', [Training::class, 'logout'])->name('training.download');
 
         Route::group(
             [
@@ -445,22 +353,13 @@ Route::group(
             ],
             function () {
                 Route::get('/', [Quiz::class, 'index'])->name('quiz.index');
-                Route::get('/{id}/questions', [Quiz::class, 'questions'])->name(
-                    'quiz.questions'
+                Route::get('/{id}/questions', [Quiz::class, 'questions'])->name('quiz.questions');
+                Route::get('/{id}/answer/{number}/{answer}', [Quiz::class, 'answer'])->name(
+                    'quiz.answer'
                 );
-                Route::get('/{id}/answer/{number}/{answer}', [
-                    Quiz::class,
-                    'answer',
-                ])->name('quiz.answer');
-                Route::post('/answers/', [Quiz::class, 'answers'])->name(
-                    'quiz.answers'
-                );
-                Route::get('/result', [Quiz::class, 'result'])->name(
-                    'quiz.result'
-                );
-                Route::get('/result/{id}', [Quiz::class, 'result'])->name(
-                    'quiz.result'
-                );
+                Route::post('/answers/', [Quiz::class, 'answers'])->name('quiz.answers');
+                Route::get('/result', [Quiz::class, 'result'])->name('quiz.result');
+                Route::get('/result/{id}', [Quiz::class, 'result'])->name('quiz.result');
             }
         );
     }
@@ -475,14 +374,8 @@ Route::get('{year}', [Pages::class, 'edition'])
 Route::get('{year}/gallery', [Pages::class, 'gallery'])->name('page.gallery');
 
 Route::get('{year}/members', [Pages::class, 'members'])->name('page.members');
-Route::get('{year}/clipping', [Pages::class, 'clipping'])->name(
-    'page.clipping'
-);
+Route::get('{year}/clipping', [Pages::class, 'clipping'])->name('page.clipping');
 
-Route::get('/fillregional', [Subscriptions::class, 'fillRegional'])->name(
-    'fillregional'
-);
+Route::get('/fillregional', [Subscriptions::class, 'fillRegional'])->name('fillregional');
 
-Route::get('/must-be-congressman', [Auth::class, 'mustBeCongressman'])->name(
-    'must.be.congressman'
-);
+Route::get('/must-be-congressman', [Auth::class, 'mustBeCongressman'])->name('must.be.congressman');

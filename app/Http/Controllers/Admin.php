@@ -55,23 +55,14 @@ class Admin extends BaseController
             ->with('city', $city)
             ->with(
                 'subscriptions',
-                Student::join(
-                    'subscriptions',
-                    'subscriptions.student_id',
-                    '=',
-                    'students.id'
-                )
+                Student::join('subscriptions', 'subscriptions.student_id', '=', 'students.id')
                     ->where('subscriptions.year', get_current_year())
                     ->where('students.city', 'ilike', $city)
                     ->get()
             )
             ->with(
                 'schools',
-                School::where(
-                    'city',
-                    'like',
-                    DB::raw("UPPER('" . $city . "')")
-                )->get()
+                School::where('city', 'like', DB::raw("UPPER('" . $city . "')"))->get()
             );
     }
 
@@ -85,21 +76,15 @@ class Admin extends BaseController
         $title = '';
 
         if (isset($course['title']) && $course['type'] == 'video') {
-            $title =
-                sprintf('Video (%s): ', $this->extractId($course['id'])) .
-                $course['title'];
+            $title = sprintf('Video (%s): ', $this->extractId($course['id'])) . $course['title'];
         }
 
         if (isset($course['title']) && $course['type'] == 'document') {
-            $title =
-                sprintf('Apostila (%s): ', $this->extractId($course['id'])) .
-                $course['title'];
+            $title = sprintf('Apostila (%s): ', $this->extractId($course['id'])) . $course['title'];
         }
 
         if (isset($course['question'])) {
-            $title =
-                sprintf('Quiz (%s): ', $this->extractId($course['id'])) .
-                $course['question'];
+            $title = sprintf('Quiz (%s): ', $this->extractId($course['id'])) . $course['question'];
         }
 
         return $title;
@@ -109,12 +94,7 @@ class Admin extends BaseController
     {
         $year = get_current_year();
 
-        $schools = Subscription::join(
-            'students',
-            'students.id',
-            '=',
-            'subscriptions.student_id'
-        )
+        $schools = Subscription::join('students', 'students.id', '=', 'subscriptions.student_id')
             ->select([
                 'students.school',
                 'students.city',
@@ -171,9 +151,7 @@ class Admin extends BaseController
 
             $item->setAttribute('title', $title);
 
-            $correct_answer = isset($course['correct'])
-                ? $course['correct']
-                : null;
+            $correct_answer = isset($course['correct']) ? $course['correct'] : null;
 
             $item->setAttribute('correct_answer', $correct_answer);
         }
@@ -192,15 +170,11 @@ class Admin extends BaseController
         return view('admin.vote.student')
             ->with(
                 'subscription',
-                $this->subscriptionsRepository->findBySubscriptionId(
-                    $subscription_id
-                )
+                $this->subscriptionsRepository->findBySubscriptionId($subscription_id)
             )
             ->with(
                 'votes',
-                $this->subscriptionsRepository->getVotesPerSubscription(
-                    $subscription_id
-                )
+                $this->subscriptionsRepository->getVotesPerSubscription($subscription_id)
             );
     }
 

@@ -33,15 +33,13 @@ const LiveReloadPlugin = require('webpack-livereload-plugin')
  */
 
 mix.webpackConfig({
+    resolve: { alias: { vue: 'vue/dist/vue.esm.js' } },
+
     plugins: [
         //new LiveReloadPlugin(),
 
         new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: [
-                'js/*',
-                '!js/item.js',
-                '!static-files*',
-            ],
+            cleanOnceBeforeBuildPatterns: ['js/*', '!js/item.js', '!static-files*'],
         }),
     ],
 

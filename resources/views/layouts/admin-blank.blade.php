@@ -1,7 +1,7 @@
 @extends('layouts.html')
 
 @section('html.head')
-    <script src="{{mix('js/admin.js')}}"></script>
+    <script src="{{mix('js/admin.js')}}" defer></script>
 
     <!-- Datepicker -->
 
@@ -15,8 +15,8 @@
 
     <link rel="shortcut icon" href="/2020/img/favicon.ico">
 
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+{{--    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />--}}
+{{--    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>--}}
 
     {{--<!-- Datepicker -->--}}
     {{--<link href="//eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/datepicker3.css" type="text/css">--}}
@@ -57,7 +57,7 @@
     <script>
         /// We are using pusher only on the admin site
 
-        loadPusher();
+        //loadPusher();
     </script>
 
     @include('partials.analytics')
