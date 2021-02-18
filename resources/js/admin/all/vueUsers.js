@@ -13,18 +13,20 @@ if (jQuery('#vue-admin-users').length) {
 
         methods: {
             __search: function () {
+                const $this = this
+
                 this.searching = true
 
                 var url = '/api/v1/search/users?email=' + this.email + '&name=' + this.name
 
-                this.$http.get(url).then(
+                axios.get(url).then(
                     function (response) {
-                        this.searching = false
+                        $this.searching = false
 
-                        this.users = response.body
+                        $this.users = response.data
                     },
 
-                    this.__requestError,
+                    $this.__requestError,
                 )
             },
 

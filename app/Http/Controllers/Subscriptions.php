@@ -55,12 +55,7 @@ class Subscriptions extends BaseController
         )
             ->leftJoin('students', 'cities.name', 'ilike', 'students.city')
             ->leftJoin('states', 'states.id', '=', 'cities.state_id')
-            ->leftJoin(
-                'subscriptions',
-                'subscriptions.student_id',
-                '=',
-                'students.id'
-            )
+            ->leftJoin('subscriptions', 'subscriptions.student_id', '=', 'students.id')
             ->where('states.code', 'RJ')
             ->where('subscriptions.year', $year)
             ->orderBy('cities.name')
@@ -103,9 +98,7 @@ class Subscriptions extends BaseController
             'citiesCount' => $subscriptions->unique('city_name')->count(),
             'citiesInCount' => $citiesIn->unique('city_name')->count(),
             'citiesOutCount' => $citiesOut->unique('city_name')->count(),
-            'lastSubscriptionDate' => $subscriptions->max(
-                'subscriptions_created_at'
-            ),
+            'lastSubscriptionDate' => $subscriptions->max('subscriptions_created_at'),
             'schoolCount' => $subscriptions
                 ->unique('school_name')
                 ->pluck('school_name')
@@ -131,12 +124,7 @@ class Subscriptions extends BaseController
 
     public function bySchool()
     {
-        return School::join(
-            'subscriptions',
-            'schools.name',
-            '=',
-            'subscriptions.school'
-        )
+        return School::join('subscriptions', 'schools.name', '=', 'subscriptions.school')
             ->where('subscriptions.ignored', false)
             ->select(
                 'schools.*',
@@ -179,16 +167,12 @@ class Subscriptions extends BaseController
                     'identidade' => $subscription['student']['id_number'],
                     'orgao_emissor' => $subscription['student']['id_issuer'],
                     'email' => $subscription['student']['email'],
-                    'telefone_residencial' =>
-                        $subscription['student']['phone_home'],
-                    'telefone_celular' =>
-                        $subscription['student']['phone_cellular'],
+                    'telefone_residencial' => $subscription['student']['phone_home'],
+                    'telefone_celular' => $subscription['student']['phone_cellular'],
                     'cep' => $subscription['student']['zip_code'],
                     'endereco' => $subscription['student']['address'],
-                    'complemento' =>
-                        $subscription['student']['address_complement'],
-                    'bairro' =>
-                        $subscription['student']['address_neighborhood'],
+                    'complemento' => $subscription['student']['address_complement'],
+                    'bairro' => $subscription['student']['address_neighborhood'],
                     'cidade' => $subscription['student']['address_city'],
                     'facebook' => $subscription['student']['facebook'],
                     'ignorado' => $subscription['ignored'] ? 'Sim' : 'Não',
@@ -211,10 +195,10 @@ class Subscriptions extends BaseController
 
         $lines = $subscriptions[0];
 
-        $lines = '"' . implode(array_keys($lines), '";"') . '"' . "\n";
+        $lines = implode(';', array_keys($lines)) . "\n";
 
         foreach ($subscriptions as $subscription) {
-            $lines .= '"' . implode($subscription, '";"') . '"' . "\n";
+            $lines .= implode(';', $subscription) . "\n";
         }
 
         Storage::disk('local')->put($fileName, utf8_decode($lines));
@@ -236,9 +220,9 @@ class Subscriptions extends BaseController
      */
     protected function exportToExcel($date, $subscriptions)
     {
-        return Excel::create('InscricoesParlamentoJuvenil-' . $date, function (
-            $excel
-        ) use ($subscriptions) {
+        return Excel::create('InscricoesParlamentoJuvenil-' . $date, function ($excel) use (
+            $subscriptions
+        ) {
             $excel->sheet('Inscricoes', function ($sheet) use ($subscriptions) {
                 $sheet->fromArray($subscriptions);
             });
@@ -262,10 +246,7 @@ class Subscriptions extends BaseController
     public function ignore($id)
     {
         if (!($subscription = Subscription::find($id))) {
-            return view('admin.message')->with(
-                'message',
-                self::MATRICULA_E_DATA_DE_NASCIMENTO
-            );
+            return view('admin.message')->with('message', self::MATRICULA_E_DATA_DE_NASCIMENTO);
         }
 
         $subscription->ignored = !$subscription->ignored;
@@ -295,8 +276,7 @@ class Subscriptions extends BaseController
     protected function normalizeBoolean($input, $var)
     {
         if (isset($input[$var])) {
-            $input[$var] =
-                $input[$var] == 1 || $input[$var] == true ? true : false;
+            $input[$var] = $input[$var] == 1 || $input[$var] == true ? true : false;
         }
 
         return $input;
@@ -337,25 +317,17 @@ class Subscriptions extends BaseController
     public function edit($id)
     {
         if (!($subscription = Subscription::find($id))) {
-            return view('admin.message')->with(
-                'message',
-                static::MATRICULA_E_DATA_DE_NASCIMENTO
-            );
+            return view('admin.message')->with('message', static::MATRICULA_E_DATA_DE_NASCIMENTO);
         }
 
         return view('admin.subscriptions.edit')
             ->with('isSubscribeForm', false)
             ->with('subscription', $subscription)
             ->with('student', $subscription->student)
-            ->with(
-                'spreadsheet',
-                $this->dataRepository->viewBuilder->spreadsheet
-            )
+            ->with('spreadsheet', $this->dataRepository->viewBuilder->spreadsheet)
             ->with(
                 'schools',
-                $this->dataRepository->viewBuilder->getSchoolsForCity(
-                    $subscription->city
-                )
+                $this->dataRepository->viewBuilder->getSchoolsForCity($subscription->city)
             )
             ->with('cities', $this->dataRepository->viewBuilder->getCities());
     }
@@ -364,14 +336,10 @@ class Subscriptions extends BaseController
     {
         $subscription = Subscription::find($id);
 
-        $subscription->update(
-            $this->getOnlyValidInput($subscription->getFillable())
-        );
+        $subscription->update($this->getOnlyValidInput($subscription->getFillable()));
 
         $subscription->student->update(
-            $this->normalizeInput(
-                $this->getOnlyValidInput($subscription->student->getEditable())
-            )
+            $this->normalizeInput($this->getOnlyValidInput($subscription->student->getEditable()))
         );
 
         $subscription->save();
