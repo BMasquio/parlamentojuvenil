@@ -13,6 +13,7 @@ class AddYearIndex extends Migration
     public function up()
     {
         Schema::table('subscriptions', function (Blueprint $table) {
+            $table->dropIndex('subscriptions_year_index');
             $table->index('year')->nullable();
         });
     }
