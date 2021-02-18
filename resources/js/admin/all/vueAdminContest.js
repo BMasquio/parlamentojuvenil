@@ -10,14 +10,16 @@ if (jQuery('#vue-admin-contest').length) {
 
         methods: {
             __search: function () {
+                const $this = this
+
                 var url = '/api/v1/search/contest'
 
-                this.$http.get(url).then(
+                axios.get(url).then(
                     function (response) {
-                        this.subscriptions = response.body
+                        $this.subscriptions = response.data
                     },
 
-                    this.__requestError,
+                    $this.__requestError,
                 )
             },
 

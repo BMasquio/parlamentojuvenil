@@ -75,18 +75,19 @@ if (jQuery('#vue-google-map').length) {
             },
 
             __fetchSubscriptions: function () {
-                this.$http.get('/subscriptions/schools').then(
+                const $this = this
+                axios.get('/subscriptions/schools').then(
                     function (response) {
-                        this.schools = response.body
+                        $this.schools = response.data
 
-                        this.$nextTick(
+                        $this.$nextTick(
                             function () {
-                                this.__createMarkers()
-                            }.bind(this),
+                                $this.__createMarkers()
+                            }.bind($this),
                         )
-                    }.bind(this),
+                    }.bind($this),
 
-                    this.__requestError,
+                    $this.__requestError,
                 )
 
                 if (this.timeout < 10000) {

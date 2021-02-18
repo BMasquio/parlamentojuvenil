@@ -22,7 +22,7 @@
             methods: {
                 __fetchSubscriptions: function() {
                     this.$http.get('/api/v1/elected').then(
-                        function(response) {
+                        function(aresponse) {
                             this.year = response.body.year;
                             this.elected = response.body.elected;
                             this.total_cities_1nd = response.body.total_cities_1nd;

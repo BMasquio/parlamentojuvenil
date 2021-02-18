@@ -23,21 +23,22 @@
             methods: {
                 __fetchStatistics: function (event)
                 {
+                    const $this = this
                     this.busy = true;
 
-                    this.$http.get('/api/v1/vote/statistics').then(
+                    axios.get('/api/v1/vote/statistics').then(
                         function (response)
                         {
-                            this.totalVotes = response.body.total_votes;
-                            this.byCity = response.body.by_city;
-                            this.byTime = response.body.by_time;
+                            $this.totalVotes = response.data.total_votes;
+                            $this.byCity = response.data.by_city;
+                            $this.byTime = response.data.by_time;
 
-                            setTimeout(this.__fetchStatistics, 3000);
+                            setTimeout($this.__fetchStatistics, 3000);
 
-                            this.busy = false;
+                            $this.busy = false;
                         },
 
-                        this.__requestError
+                        $this.__requestError
                     );
                 },
 

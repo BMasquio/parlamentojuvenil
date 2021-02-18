@@ -8,8 +8,6 @@
                 <div class="offset-1 col-10 offset-md-3 col-md-6 offset-lg-4 col-lg-4">
                     <h3 class="identify-title">Identifique-se</h3>
 
-                    <button form="emailRegisterLoginForm" type="submit" value="register" class="btn btn-lg btn-block btn-danger btn-signup">Cadastre-se</button>
-
                     <form id="emailRegisterLoginForm" method="POST" action="{{ route('auth.login.email') }}">
                         @csrf
                             <div class="row text-left">

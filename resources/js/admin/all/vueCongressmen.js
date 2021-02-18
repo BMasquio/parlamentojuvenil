@@ -11,12 +11,13 @@ if (jQuery('#vue-congressmen').length) {
 
         methods: {
             __fetchCongressmen: function () {
-                this.$http.get('/api/v1/congressmen/2015').then(
+                const $this = this
+                axios.get('/api/v1/congressmen/2015').then(
                     function (response) {
-                        this.congressmen = response.body
+                        $this.congressmen = response.data
                     },
 
-                    this.__requestError,
+                    $this.__requestError,
                 )
             },
         },

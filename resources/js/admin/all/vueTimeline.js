@@ -103,17 +103,18 @@ if (jQuery('#timeline').length) {
             },
 
             __fetchTimeline: function () {
-                if (this.year) {
-                    this.$http.get('/api/v1/timeline/' + this.year).then(
+                const $this = this
+                if ($this.year) {
+                    axios.get('/api/v1/timeline/' + $this.year).then(
                         function (response) {
-                            this.timeline = response.body.lines
+                            $this.timeline = response.data.lines
 
-                            this.now = response.body.now
+                            $this.now = response.data.now
 
-                            this.__calculateTimeOffset(response.body.now)
-                        }.bind(this),
+                            $this.__calculateTimeOffset(response.data.now)
+                        }.bind($this),
 
-                        this.__requestError,
+                        $this.__requestError,
                     )
                 }
             },

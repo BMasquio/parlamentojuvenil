@@ -10,14 +10,15 @@ if (jQuery('#vue-admin-contest-votes').length) {
 
         methods: {
             __search: function () {
+                const $this = this
                 var url = '/api/v1/search/contest/votes'
 
-                this.$http.get(url).then(
+                axios.get(url).then(
                     function (response) {
-                        this.flags = response.body
+                        $this.flags = response.data
                     },
 
-                    this.__requestError,
+                    $this.__requestError,
                 )
             },
 

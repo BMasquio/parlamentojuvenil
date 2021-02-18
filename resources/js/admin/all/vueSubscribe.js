@@ -55,6 +55,8 @@ if (jQuery('#vue-subscribe').length) {
             },
 
             checkZip: function () {
+                const $this = this
+
                 var zip = jQuery('#zip_code').val()
 
                 zip = zip.split('.').join('')
@@ -64,16 +66,16 @@ if (jQuery('#vue-subscribe').length) {
                 if (zip.length == 8) {
                     this.zipValid = true
 
-                    this.$http.get('//viacep.com.br/ws/' + zip + '/json/').then(
+                    axios.get('//viacep.com.br/ws/' + zip + '/json/').then(
                         function (response) {
                             if (response.body.localidade) {
-                                this.address_city = response.body.localidade
-                                this.address = response.body.logradouro
-                                this.address_neighborhood = response.body.bairro
+                                $this.address_city = response.data.localidade
+                                $this.address = response.data.logradouro
+                                $this.address_neighborhood = response.data.bairro
                             }
                         },
 
-                        this.__requestError,
+                        $this.__requestError,
                     )
                 }
             },
@@ -94,10 +96,6 @@ if (jQuery('#vue-subscribe').length) {
                         $this.__requestError,
                     )
                 }
-            },
-
-            __requestError: function (error) {
-                console.log('Request error: ', error)
             },
 
             __cityChanged: function (event) {
