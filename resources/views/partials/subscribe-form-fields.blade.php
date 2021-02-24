@@ -100,7 +100,7 @@
         <div class="row control-group" transition="expand">
             <div class="form-group col-12 floating-label-form-group controls">
                 <label for="city" class="control-label">Município</label>
-                <select v-model="city" class="form-control input-lg" placeholder="Município" name="city" id="city" required data-validation-required-message="Por favor preencha o município.">
+                <select class="form-control input-lg" placeholder="Município" name="city" id="city" required data-validation-required-message="Por favor preencha o município.">
                     {{--<select id="city-edit" v-model="city" class="form-control input-lg" placeholder="Município" name="city" id="city" required data-validation-required-message="Por favor preencha o município.">--}}
 
                     @if (is_null($city = old('city') ?: $student->city) && $isSubscribeForm)
@@ -123,7 +123,7 @@
         <div class="row control-group"  transition="expand">
             <div class="form-group col-12 col-md-6 floating-label-form-group controls">
                 <label for="school" class="control-label">Escola</label>
-                <select id="school-edit" v-model="school" value="" options="schools" class="form-control input-lg" placeholder="Escola" name="school" id="school">
+                <select id="school-edit" value="" options="schools" class="form-control input-lg" placeholder="Escola" name="school" id="school">
                     <option value="">SELECIONE SUA ESCOLA</option>
                     <option
                             v-for="item in schools"
@@ -213,7 +213,7 @@
             <label for="cpf" class="control-label">CPF</label>
             <input
                     v-model="cpf"
-                    v-on:keyup="checkCpf"
+                    @keyup="checkCpf"
                     type="text"
                     class="form-control input-lg"
                     value="{!! old('cpf') ?: $student->cpf !!}"
@@ -221,9 +221,10 @@
                     placeholder="CPF"
                     name="cpf"
                     id="cpf"
+                    v-mask="'###.###.###-##'"
                     required data-validation-required-message="Por favor digite seu CPF."
             >
-            <span class="help-block text-danger" v-if="!cpfValid && cpfWasChecked">CPF INVÁLIDO</span>
+            <span class="help-block text-danger" v-if="!cpfValid">CPF INVÁLIDO</span>
         </div>
 
         <div class="form-group col-12 col-md-4 floating-label-form-group controls">
@@ -297,7 +298,6 @@
         <div class="form-group col-lg-12 floating-label-form-group controls">
             <label for="zip_code" class="control-label">CEP da residência</label>
             <input
-                    v-model="zip_code"
                     v-on:keyup="checkZip"
                     type="tel"
                     value="{!! old('zip_code') ?: $student->zip_code !!}"
@@ -452,3 +452,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    window.subscriptionId = {!! $subscription->id !!}
+</script>

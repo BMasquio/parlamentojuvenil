@@ -1,57 +1,47 @@
-import Vue from 'vue'
-
 if (jQuery('#vue-subscribe').length) {
-    var emptySchool = [{ value: '', text: 'SELECIONE SUA ESCOLA' }]
+    var emptySchool = [{ value: '', text: 'SELECIONE A ESCOLA' }]
 
     var vueSubscribe = new Vue({
         el: '#vue-subscribe',
 
         data: {
             cpfValid: false,
-            cpfWasChecked: false,
             zipValid: false,
-            address: "{!! old('address') ?: $student->address !!}",
-            address_complement: "{!! old('address_complement') ?: $student->address_complement !!}",
-            address_neighborhood:
-                "{!! old('address_neighborhood') ?: $student->address_neighborhood !!}",
-            address_city: "{!! old('address_city') ?: $student->address_city !!}",
-            cpf: "{!! old('cpf') ?: $student->cpf !!}",
-            birthdate: "{!! old('birthdate') ?: $student->birthdate !!}",
-            city: "{!! old('city') ?: $student ? mb_strtoclean($student->city) : '' !!}",
-            facebook: "{!! old('facebook') ?: $student->facebook !!}",
-            social_name: "{!! old('social_name') ?: $student->social_name !!}",
-            id_issuer: "{!! old('id_issuer') ?: $student->id_issuer !!}",
-            registration: "{!! old('registration') ?: $student->registration !!}",
-            email: "{!! old('email') ?: $student->email !!}",
-            grade: "{!! old('grade') ?: $student->grade !!}",
-            phone_home: "{!! old('phone_home') ?: $student->phone_home !!}",
-            phone_cellular: "{!! old('phone_cellular') ?: $student->phone_cellular !!}",
-            name: "{!! old('name') ?: $student->name !!}",
-            zip_code: "{!! old('zip_code') ?: $student->zip_code !!}",
-            gender: "{!! old('gender') ?: $student->gender !!}",
-            gender2: "{!! old('gender2') ?: $student->gender2 !!}",
-            id_number: "{!! old('id_number') ?: $student->id_number !!}",
+            address,
+            address_complement,
+            address_neighborhood,
+            address_city,
+            cpf,
+            city,
+            birthdate,
+            social_name,
+            id_issuer,
+            registration,
+            email,
+            grade,
+            phone_home,
+            phone_cellular,
+            name,
+            zip_code,
+            gender,
+            gender2,
+            id_number,
+            elected_1nd,
+            elected_2nd,
+            auto_elected,
+            school: '',
             schools: emptySchool,
-            elected_1nd:
-                "{!! old('elected_1nd') ?: isset($subscription) ? $subscription->elected_1nd : '' !!}",
-            elected_2nd:
-                "{!! old('elected_2nd') ?: isset($subscription) ? $subscription->elected_2nd : '' !!}",
-            auto_elected:
-                "{!! old('auto_elected') ?: isset($subscription) ? $subscription->auto_elected : '' !!}",
             elected_fields: [
                 { name: 'elected_1nd', round: 1 },
                 { name: 'elected_2nd', round: 2 },
             ],
-            school: "{!! old('school') ?: $student->school !!}",
         },
 
         methods: {
             checkCpf: function () {
                 var cpf = this.cpf.split('.').join('').split('-').join('').split('_').join('')
 
-                this.cpfValid = TestaCPF(cpf)
-
-                this.cpfWasChecked = true
+                this.cpfValid = testaCPF(cpf)
             },
 
             checkZip: function () {
@@ -90,7 +80,7 @@ if (jQuery('#vue-subscribe').length) {
                 if ($this.city) {
                     axios.get('/schools/' + $this.city).then(
                         function (response) {
-                            $this.schools = response.body
+                            $this.schools = response.data
                         },
 
                         $this.__requestError,
@@ -98,14 +88,39 @@ if (jQuery('#vue-subscribe').length) {
                 }
             },
 
-            __cityChanged: function (event) {
-                var city = ''
+            getStudentData: function (event) {
+                const $this = this
 
-                if (this.city !== city) {
-                    this.school = ''
+                if ($this.city) {
+                    axios.get('/admin/subscriptions/' + window.subscriptionId).then(
+                        function (response) {
+                            $this.address = response.data.student.address
+                            $this.address_complement = response.data.student.address_complement
+                            $this.address_neighborhood = response.data.student.address_neighborhood
+                            $this.address_city = response.data.student.address_city
+                            $this.cpf = response.data.student.cpf
+                            $this.birthdate = response.data.student.birthdate
+                            $this.social_name = response.data.student.social_name
+                            $this.id_issuer = response.data.student.id_issuer
+                            $this.registration = response.data.student.registration
+                            $this.email = response.data.student.email
+                            $this.grade = response.data.student.grade
+                            $this.phone_home = response.data.student.phone_home
+                            $this.phone_cellular = response.data.student.phone_cellular
+                            $this.name = response.data.student.name
+                            $this.zip_code = response.data.student.zip_code
+                            $this.gender = response.data.student.gender
+                            $this.gender2 = response.data.student.gender2
+                            $this.id_number = response.data.student.id_number
+                            $this.school = response.data.student.school
+                            $this.elected_1nd = response.data.elected_1nd ? 1 : 0
+                            $this.elected_2nd = response.data.elected_2nd ? 1 : 0
+                            $this.auto_elected = response.data.auto_elected ? 1 : 0
+                        },
+
+                        $this.__requestError,
+                    )
                 }
-
-                this.__fetchSchools()
             },
         },
 
@@ -113,9 +128,14 @@ if (jQuery('#vue-subscribe').length) {
             city: function () {
                 this.__fetchSchools()
             },
+
+            cpf: function (val) {
+                this.checkCpf()
+            },
         },
 
         mounted: function () {
+            this.getStudentData()
             this.__fetchSchools()
         },
     })

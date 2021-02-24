@@ -6,14 +6,16 @@ use DB;
 use App\Models\User;
 use App\Models\Vote;
 use App\Models\Student;
+use App\Models\Subscription;
 use App\Models\FlagVote;
 use App\Models\SocialUser;
 use App\Models\FlagContest;
-use App\Models\Subscription;
 use App\Exceptions\StudentAlreadyVoted;
 
 class Subscriptions extends Repository
 {
+    protected $model = Subscription::class;
+
     public function candidates($year = null, $round = null)
     {
         $query = Subscription::query();
@@ -34,12 +36,7 @@ class Subscriptions extends Repository
 
         $query->where('year', $this->getCurrentYear($year));
 
-        $query->join(
-            'social_users',
-            'social_users.student_id',
-            '=',
-            'subscriptions.student_id'
-        );
+        $query->join('social_users', 'social_users.student_id', '=', 'subscriptions.student_id');
 
         $query->join('users', 'social_users.user_id', '=', 'users.id');
 
@@ -50,21 +47,15 @@ class Subscriptions extends Repository
         return $query;
     }
 
-    public function candidatesForSchool(
-        $year = null,
-        $round = null,
-        $query = null
-    ) {
+    public function candidatesForSchool($year = null, $round = null, $query = null)
+    {
         return $this->makeCandidatesQuery($year, $round, $query)
             ->where('students.school', 'ilike', loggedUser()->student->school)
             ->get();
     }
 
-    public function candidatesForCity(
-        $year = null,
-        $round = null,
-        $query = null
-    ) {
+    public function candidatesForCity($year = null, $round = null, $query = null)
+    {
         $query = $this->makeCandidatesQuery($year, $round, $query)->where(
             'students.city',
             'ilike',
@@ -72,10 +63,7 @@ class Subscriptions extends Repository
         );
 
         if (loggedUser()->student->city == 'RIO DE JANEIRO') {
-            $query = $query->where(
-                'students.regional',
-                loggedUser()->student->regional
-            );
+            $query = $query->where('students.regional', loggedUser()->student->regional);
         }
 
         return $query->get();
@@ -197,8 +185,7 @@ class Subscriptions extends Repository
         $this->markAllElected();
 
         $electedField = 'elected_' . $round . 'nd';
-        $electedPreviousField =
-            'elected_' . ($round - 1 > 0 ? $round - 1 : $round) . 'nd';
+        $electedPreviousField = 'elected_' . ($round - 1 > 0 ? $round - 1 : $round) . 'nd';
 
         $elected = Subscription::with('student')
             ->select(
@@ -209,8 +196,7 @@ class Subscriptions extends Repository
                         $round .
                         ' and is_valid = true and year = ' .
                         $this->getCurrentYear() .
-                        ' and votes.subscription_id = subscriptions.id)') .
-                        ' as subscription_votes'
+                        ' and votes.subscription_id = subscriptions.id)') . ' as subscription_votes'
                 ),
                 DB::raw(
                     '(select count(*) from votes join students stu2 on votes.student_id = stu2.id and stu2.city = students.city and stu2.regional = students.regional where round = ' .
@@ -229,11 +215,7 @@ class Subscriptions extends Repository
             )
             ->join('students', 'students.id', '=', 'subscriptions.student_id')
             ->where('subscriptions.year', $this->getCurrentYear())
-            ->where(function ($query) use (
-                $electedField,
-                $electedPreviousField,
-                $showAll
-            ) {
+            ->where(function ($query) use ($electedField, $electedPreviousField, $showAll) {
                 if (!$showAll) {
                     $query->where($electedPreviousField, true);
                 } else {
@@ -401,12 +383,7 @@ class Subscriptions extends Repository
             $query = $this->candidates($year, $round);
         }
 
-        return $query->join(
-            'students',
-            'students.id',
-            '=',
-            'subscriptions.student_id'
-        );
+        return $query->join('students', 'students.id', '=', 'subscriptions.student_id');
     }
 
     public function markAllElected()
@@ -422,9 +399,7 @@ class Subscriptions extends Repository
         $query->select(
             'students.name as student_name',
             'students.city as city_name',
-            DB::raw(
-                '(students.regional||students.city) as regional_and_city_name'
-            ),
+            DB::raw('(students.regional||students.city) as regional_and_city_name'),
             'students.regional as student_regional',
             'subscriptions.id as subscription_id',
             'students.school as school_name',
@@ -439,12 +414,7 @@ class Subscriptions extends Repository
 
         $query->where('year', $this->getCurrentYear());
 
-        $query->join(
-            'students',
-            'students.id',
-            '=',
-            'subscriptions.student_id'
-        );
+        $query->join('students', 'students.id', '=', 'subscriptions.student_id');
 
         if ($round == 1) {
             $query->orderBy('school_name', 'asc');
@@ -474,14 +444,8 @@ class Subscriptions extends Repository
 
             foreach ($votes as $vote) {
                 if ($currentMarker !== $this->getMarker($vote, $votePer)) {
-                    if (
-                        $markerCount == 1 &&
-                        !is_null($lastSubscriptionForMarker)
-                    ) {
-                        $this->markAsElected(
-                            $lastSubscriptionForMarker,
-                            $electedField
-                        );
+                    if ($markerCount == 1 && !is_null($lastSubscriptionForMarker)) {
+                        $this->markAsElected($lastSubscriptionForMarker, $electedField);
                     }
 
                     $currentMarker = $this->getMarker($vote, $votePer);
@@ -494,10 +458,7 @@ class Subscriptions extends Repository
                 }
 
                 if ($vote['votes'] == $neededVotes && $neededVotes > 0) {
-                    $this->markAsElected(
-                        $vote['subscription_id'],
-                        $electedField
-                    );
+                    $this->markAsElected($vote['subscription_id'], $electedField);
                 }
 
                 $markerCount++;
@@ -522,16 +483,9 @@ class Subscriptions extends Repository
 
     public function getCandidates($query = null, $year = null)
     {
-        $method =
-            $this->getCurrentRound() == 1
-                ? 'candidatesForSchool'
-                : 'candidatesForCity';
+        $method = $this->getCurrentRound() == 1 ? 'candidatesForSchool' : 'candidatesForCity';
 
-        return $this->{$method}(
-            $this->getCurrentYear($year),
-            $this->getCurrentRound(),
-            $query
-        );
+        return $this->{$method}($this->getCurrentYear($year), $this->getCurrentRound(), $query);
     }
 
     public function voteIn($subscription_id)
@@ -575,10 +529,8 @@ class Subscriptions extends Repository
         $total_valid_votes_1nd = $values['votes_1nd'];
         $total_valid_votes_2nd = $values['votes_2nd'];
         $total_voters = $values['total_voters'];
-        $voter_percentage_1nd =
-            round(($total_valid_votes_1nd / $total_voters) * 100, 5) . '%';
-        $voter_percentage_2nd =
-            round(($total_valid_votes_2nd / $total_voters) * 100, 5) . '%';
+        $voter_percentage_1nd = round(($total_valid_votes_1nd / $total_voters) * 100, 5) . '%';
+        $voter_percentage_2nd = round(($total_valid_votes_2nd / $total_voters) * 100, 5) . '%';
 
         $data = Subscription::with('quizResult')
             ->with('watched')
@@ -644,19 +596,10 @@ class Subscriptions extends Repository
         User::where('id', loggedUser()->user->id)->delete();
 
         if (loggedUser()->student) {
-            SocialUser::where(
-                'student_id',
-                loggedUser()->student->id
-            )->delete();
-            Subscription::where(
-                'student_id',
-                loggedUser()->student->id
-            )->delete();
+            SocialUser::where('student_id', loggedUser()->student->id)->delete();
+            Subscription::where('student_id', loggedUser()->student->id)->delete();
             FlagVote::where('student_id', loggedUser()->student->id)->delete();
-            FlagContest::where(
-                'student_id',
-                loggedUser()->student->id
-            )->delete();
+            FlagContest::where('student_id', loggedUser()->student->id)->delete();
             Student::where('id', loggedUser()->student->id)->delete();
         }
 
@@ -694,10 +637,7 @@ STRING
         );
 
         foreach ($students as $student) {
-            if (
-                !is_null($student->seeduc_regional) &&
-                !empty($student->seeduc_regional)
-            ) {
+            if (!is_null($student->seeduc_regional) && !empty($student->seeduc_regional)) {
                 $found = Student::find($student->id);
                 $found->regional = $student->seeduc_regional;
                 $found->save();

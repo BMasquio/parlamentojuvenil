@@ -12,5 +12,3 @@ require('./vendor/datatables/media/js/jquery.dataTables.min')
 require('./vendor/startbootstrap-sb-admin-2/dist/js/sb-admin-2')
 
 require('./all/requires')
-
-window.$http = axios

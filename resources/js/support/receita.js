@@ -14,13 +14,7 @@ function EntradaNumerico(evt) {
         : void 0
 
     // Habilita teclas <DEL>, <TAB>, <ENTER>, <ESC> e <BACKSPACE>
-    if (
-        key_code == 8 ||
-        key_code == 9 ||
-        key_code == 13 ||
-        key_code == 27 ||
-        key_code == 46
-    ) {
+    if (key_code == 8 || key_code == 9 || key_code == 13 || key_code == 27 || key_code == 46) {
         return true
     }
     // Habilita teclas <HOME>, <END>, mais as quatros setas de navegação (cima, baixo, direta, esquerda)
@@ -56,32 +50,10 @@ function isEmpty(s) {
     return s == null || s.length == 0
 }
 
-//Verifica se CPF é válido
-function TestaCPF(strCPF) {
-    var Soma
-    var Resto
-    Soma = 0
-    //strCPF  = RetiraCaracteresInvalidos(strCPF,11);
-    if (strCPF == '00000000000') return false
-    for (i = 1; i <= 9; i++)
-        Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i)
-    Resto = (Soma * 10) % 11
-    if (Resto == 10 || Resto == 11) Resto = 0
-    if (Resto != parseInt(strCPF.substring(9, 10))) return false
-    Soma = 0
-    for (i = 1; i <= 10; i++)
-        Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i)
-    Resto = (Soma * 10) % 11
-    if (Resto == 10 || Resto == 11) Resto = 0
-    if (Resto != parseInt(strCPF.substring(10, 11))) return false
-    return true
-}
-
 // Recupera uma referência ao objeto com o id especificado
 // Funciona primariamente com o DOM, mas também aceita document.all
 function pegaObj(id) {
-    if (typeof document.getElementById != 'undefined')
-        return document.getElementById(id)
+    if (typeof document.getElementById != 'undefined') return document.getElementById(id)
     else if (document.all) {
         return document.all(id)
     }
@@ -205,12 +177,7 @@ function FG_FormatarCPF(xElement) {
             '-' +
             strValor.substr(9, 2)
     } else if (strValor.length > 6) {
-        strValor =
-            strValor.substr(0, 3) +
-            '.' +
-            strValor.substr(3, 3) +
-            '.' +
-            strValor.substr(6, 3)
+        strValor = strValor.substr(0, 3) + '.' + strValor.substr(3, 3) + '.' + strValor.substr(6, 3)
     } else if (strValor.length > 3) {
         strValor = strValor.substr(0, 3) + '.' + strValor.substr(3, 3)
     }
@@ -231,12 +198,7 @@ function FG_FormatarData(xElement) {
     }
 
     if (strValor.length > 5) {
-        strValor =
-            strValor.substr(0, 2) +
-            '/' +
-            strValor.substr(2, 2) +
-            '/' +
-            strValor.substr(4, 4)
+        strValor = strValor.substr(0, 2) + '/' + strValor.substr(2, 2) + '/' + strValor.substr(4, 4)
     } else if (strValor.length > 2) {
         strValor = strValor.substr(0, 2) + '/' + strValor.substr(2, 2)
     }
@@ -246,9 +208,7 @@ function FG_FormatarData(xElement) {
 
 function ValidarDados() {
     if (pegaObj('txtCPF').value.length != 14) {
-        alert(
-            'Por favor, preencha o CPF a ser consultado somente com os 11 números.',
-        )
+        alert('Por favor, preencha o CPF a ser consultado somente com os 11 números.')
         pegaObj('txtCPF').focus()
         return false
     }

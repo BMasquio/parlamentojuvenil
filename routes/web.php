@@ -21,6 +21,8 @@ use App\Http\Controllers\News;
 use App\Http\Controllers\Training;
 use App\Http\Controllers\Quiz;
 use App\Http\Controllers\Pages;
+use App\Http\Controllers\Admin\Students as AdminStudents;
+use App\Http\Controllers\Admin\Subscriptions as AdminSubscriptions;
 
 /*
 |--------------------------------------------------------------------------
@@ -252,6 +254,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'only-administrators
 
     /// Must be last
     Route::get('/{city}', [Admin::class, 'city'])->name('admin.city');
+
+    Route::group(['prefix' => '/students'], function () {
+        Route::get('/{id}', [AdminStudents::class, 'show'])->name('students.show');
+    });
+
+    Route::group(['prefix' => '/subscriptions'], function () {
+        Route::get('/{id}', [AdminSubscriptions::class, 'show'])->name('subscriptions.show');
+    });
 });
 
 Route::get('subscriptions/schools', [Subscriptions::class, 'bySchool'])->name(

@@ -231,11 +231,7 @@ class Subscriptions extends BaseController
 
     protected function getOnlyValidInput($fillable)
     {
-        $input = collect(Input::only($fillable))
-            ->reject(function ($value) {
-                return $value === null;
-            })
-            ->toArray();
+        $input = request()->all();
 
         $input = $this->normalizeBoolean($input, 'elected_1nd');
         $input = $this->normalizeBoolean($input, 'elected_2nd');
@@ -344,7 +340,7 @@ class Subscriptions extends BaseController
 
         $subscription->save();
 
-        return redirect()->route('admin.city', ['city' => $subscription->city]);
+        return redirect()->route('admin.city', ['city' => $subscription->student->city]);
     }
 
     protected function updateLoggedStudent($student)
